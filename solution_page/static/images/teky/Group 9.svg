@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <filter id="Rectangle" x="0" y="0" width="55" height="55" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_9" data-name="Group 9" transform="translate(7.5 6.5)">
+    <g transform="matrix(1, 0, 0, 1, -7.5, -6.5)" filter="url(#Rectangle)">
+      <rect id="Rectangle-2" data-name="Rectangle" width="40" height="40" rx="5" transform="translate(7.5 6.5)" opacity="0.7"/>
+    </g>
+    <g id="video-camera" transform="translate(9 13)">
+      <path id="Path" d="M14.2,0H1.528A1.529,1.529,0,0,0,0,1.528V11.582a1.529,1.529,0,0,0,1.528,1.528H14.2a1.53,1.53,0,0,0,1.528-1.528V1.528A1.53,1.53,0,0,0,14.2,0Z" fill="#fff"/>
+      <path id="Path-2" data-name="Path" d="M0,7.019,5.25,9.885V0L0,2.866Z" transform="translate(16.75 1.629)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d)">
+<circle cx="14" cy="14" r="12" fill="url(#paint0_linear)"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5429 8H16.2642C18.2167 8 19.8052 9.58852 19.8052 11.541V14.2951C19.8052 16.2475 18.2167 17.8361 16.2642 17.8361H15.9139C14.5431 17.8361 13.2544 18.37 12.2854 19.3392L11.9163 19.7083C11.8532 19.7714 11.7696 19.8064 11.6812 19.8064C11.4965 19.8064 11.3462 19.6565 11.3462 19.4722V17.8308C9.48484 17.7283 8.00195 16.1816 8.00195 14.2951V11.541C8.00195 9.58852 9.59048 8 11.5429 8ZM10.5593 12.918C10.5593 13.352 10.9122 13.7049 11.3462 13.7049C11.78 13.7049 12.1331 13.352 12.1331 12.918C12.1331 12.4841 11.7802 12.1311 11.3462 12.1311C10.9122 12.1311 10.5593 12.4841 10.5593 12.918ZM13.9036 13.7049C13.4696 13.7049 13.1167 13.352 13.1167 12.918C13.1167 12.4841 13.4696 12.1311 13.9036 12.1311C14.3376 12.1311 14.6905 12.4841 14.6905 12.918C14.6905 13.352 14.3374 13.7049 13.9036 13.7049ZM15.6741 12.918C15.6741 13.352 16.027 13.7049 16.461 13.7049C16.8947 13.7049 17.2479 13.352 17.2479 12.918C17.2479 12.4841 16.8949 12.1311 16.461 12.1311C16.027 12.1311 15.6741 12.4841 15.6741 12.918Z" fill="white"/>
+<defs>
+<filter id="filter0_d" x="0" y="0" width="28" height="28" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear" x1="2" y1="2" x2="2" y2="26" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4FCA36"/>
+<stop offset="0.993214" stop-color="#42B72A"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,21 @@
+{% load static%}
+<div class="c-prize-outer">
+    <div class="c-prize-slider c-template-dotprimary">
+        <div class="owl-carousel js-prize-slider">
+            <div class="c-prize-item">
+                <div class="c-prize-item__inner">
+                        {% for x in myAward %}
+                            <div class="c-prize-item__thumb"><img src="../media/{{ x.img }}" alt="prize"></div>
+                            <div class="c-prize-item__title">{{x.title}}</div>
+                            <div class="c-prize-item__desc">{{x.description}}/div>
+                            <div class="c-prize-item__more"><a href="{{x.Detail}}">Xem chi tiết<img style="width:39px;height:12px;" src="{% static "old_images/images/icons/icon-arrow-right-blue.svg" %}"></a></div>
+                        {% endfor %}   
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="container">
+    <div class="c-more is-landing-option"><a class="btn btn-orange btn-lg is-shadow-solid-green" href="#">Đăng ký học thử miễn phí</a></div>
+  </div>
+  <!--end container-->
+</div>

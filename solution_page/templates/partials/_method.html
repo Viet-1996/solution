@@ -1,0 +1,37 @@
+<div class="c-block is-small">
+    <div class="container">
+      <div class="c-box">
+        <div class="c-box__title">
+          <div class="c-box__title__name"><span class="text-medium text-label">Phương pháp</span>
+            sư phạm
+          </div>
+        </div>
+        <div class="c-box__content">
+          <div class="c-method-list">
+            <ul>
+                {% for x in myMethod %}
+                <li>
+                    <div class="b-grid">
+                    <div class="b-grid__img">
+                        <figure><img src="../media/{{ x.img }}" alt="method"></figure>
+                    </div>
+                    <div class="b-grid__content">
+                        <div class="b-grid__row">
+                        <h3><b>{{ x.name }}</b></h3><br>
+                            {{ x.content }}
+                        </div>
+                    </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+          </div>
+          <!--end c-method-list-->
+          <div class="c-more is-landing-option"><a class="btn btn-orange btn-lg is-shadow-solid-green" href="#">Đăng ký học thử miễn phí</a></div>
+        </div>
+        <!--end c-box__content-->
+      </div>
+      <!--end c-box-->
+    </div>
+    <!--end container-->
+  </div>

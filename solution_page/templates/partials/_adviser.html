@@ -1,0 +1,54 @@
+<div class="c-block is-small c-adviser-block">
+    <div class="container">
+      <div class="c-box">
+        <div class="c-box__title">
+          <div class="c-box__title__name"><span class="text-medium text-label is-label-short">Đội ngũ</span>
+            cố vấn
+          </div>
+        </div>
+        <div class="c-box__content">
+          <div class="c-adviser-slider">
+            <div class="owl-carousel js-adviser-slider">
+                {% for x in myAdviser  %}
+              <div class="c-adviser-item">
+                <div class="c-adviser-item__thumb">
+                  <figure><img src="../media/{{ x.img }}" alt="adviser"></figure>
+                </div>
+                <div class="c-adviser-item__content">
+                  <div class="c-adviser-item__row">
+                    <div class="c-adviser-item__title">{{ x.title }}</div>
+                    <div class="c-adviser-item__pos">{{ x.position }}</div>
+                  </div>
+                  <div class="c-adviser-item__row">
+                    {% for y in myAdviserLink %}
+                    {% if y.title.title == x.title %}
+                        <center><a class="c-adviser-item__link" href="y.url"><img src="../media/{{ y.logo }}" style="width:22px;height:22px"></a></center>
+                    {% endif %}
+                    {% endfor %}
+                   </div>
+                </div>
+              </div>
+                {% endfor %}
+            </div>
+          </div>
+          <div class="c-adviser-title">Cùng đội ngũ chuyên gia từ các đối tác giáo dục quốc tế</div>
+            <div class="c-adviser-desc">{% for z in myAdviserLogo %} {{z.description}}, {% endfor %} …</div>
+                <div class="c-adviser-logo-slider">
+                    <div class="owl-carousel js-adviser-logo-slider">
+                        {% for z in myAdviserLogo %}
+                        <div class="c-adviser-logo">
+                            <div class="c-adviser-logo__inner">
+                            <figure><img src="../media/{{ z.logo }}" alt="logo"></figure>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            <div class="c-more is-landing-option"><a class="btn btn-orange btn-lg is-shadow-solid-green" href="#">Đăng ký học thử miễn phí</a></div>
+        </div>
+        <!--end c-box__content-->
+      </div>
+      <!--end c-box-->
+    </div>
+    <!--end container-->
+  </div>

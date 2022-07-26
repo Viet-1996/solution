@@ -1,0 +1,35 @@
+  <div class="c-block is-small">
+    <div class="container">
+      <div class="c-box">
+        <div class="c-box__title">
+          <div class="c-box__title__name"><span class="text-medium text-label">Vì sao</span>
+            chọn TEKY?
+          </div>
+        </div>
+        <div class="c-box__content">
+          <div class="c-choose-grid">
+            <ul>
+              {% for x in myWhyChooseUs %}
+              <li>  
+                <div class="b-grid">
+                  <div class="b-grid__img">
+                    <figure><img src="../media/{{ x.img }}" alt="choose"></figure>
+                  </div>
+                  <div class="b-grid__content">
+                    <div class="b-grid__row"><span class="b-grid__title">{{ x.title}}</span></div>
+                    <div class="b-grid__row b-grid__desc">
+                      <p>{{x.content}}</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <!--end c-box-content-->
+      </div>
+      <!--end c-box-->
+    </div>
+    <!--end container-->
+  </div>
