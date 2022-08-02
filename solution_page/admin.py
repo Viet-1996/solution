@@ -4,7 +4,7 @@ from tkinter.tix import IMAGE
 from turtle import title
 from django.contrib import admin
 
-from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, Parent, Project, TechnologyList, UploadVid, User, WhyChooseUs, LearningPath, Technology, WhyLearn
+from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, ModalRegister, Parent, Project, TechnologyList, UploadVid, User, WhyChooseUs, LearningPath, Technology, WhyLearn
 
 class UploadVidAdmin(admin.ModelAdmin):
     list_display = ['title', 'url', 'img', 'quote', 'name']
@@ -58,17 +58,33 @@ class AwardAdmin(admin.ModelAdmin):
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['img', 'price', 'title', 'vote', 'rating']
 
+class ModalRegisterAdmin(admin.ModelAdmin):
+    list_display = ['student_name', 'date_of_birth', 'parent_name', 'email']
+
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+class ParentAdmin(admin.ModelAdmin):
+    list_display = ['name', 'studentname', 'content']
+
+class MediaAdmin(admin.ModelAdmin):
+    list_display = ['title']
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['img']
+
 admin.site.register(UploadVid, UploadVidAdmin)
 admin.site.register(Adviser, AdviserAdmin)
 admin.site.register(Award, AwardAdmin)
 admin.site.register(AdviserLogo, AdviserLogoAdmin)
 admin.site.register(Certificate, CertificateAdmin)
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Media)
+admin.site.register(Media, MediaAdmin)
 admin.site.register(Method, MethodAdmin)
-admin.site.register(Parent)
-admin.site.register(Project)
+admin.site.register(Parent, ParentAdmin)
+admin.site.register(Project, ProjectAdmin)
 admin.site.register(Technology, TechnologyAdmin)
 admin.site.register(WhyChooseUs, WhyChooseUsAdmin)
-admin.site.register([WhyLearn, User])
+admin.site.register(User, UserAdmin)
 admin.site.register(LearningPath, LearningPathAdmin)
+admin.site.register(ModalRegister, ModalRegisterAdmin)

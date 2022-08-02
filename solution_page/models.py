@@ -99,7 +99,7 @@ class Parent(models.Model):
 
 class Media(models.Model):
     img = models.ImageField(upload_to='images')
-    logo = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200)
 
 class WhyLearn(models.Model):
@@ -109,5 +109,25 @@ class WhyLearn(models.Model):
     rating = models.FloatField(default=0)
 
 class User(models.Model):
-    title = models.ForeignKey(WhyLearn, on_delete=models.CASCADE)
     img = models.ImageField(upload_to='images')
+
+class ModalRegister(models.Model):
+    student_name = models.CharField(max_length=100)
+    date_of_birth = models.SmallIntegerField(
+        default=2010,
+        validators=[
+            MaxValueValidator(2016),
+            MinValueValidator(2010),
+        ])
+    parent_name = models.CharField(max_length=100)
+    email = models.EmailField(max_length=50)
+    phone_number = models.CharField(max_length=20)
+
+class LoginUser(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+
+class RegisterUser(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    email = models.CharField(max_length=20)

@@ -92,12 +92,9 @@
             <div class="c-header-user">
               <div class="c-header-user__icon"><img src="{% static "old_images/images/icons/icon24-user-white.svg" %}"></div>
               <div class="c-header-user__text">
-                <p><a href="#">Đăng nhập</a></p>
+                <p>{% if user.is_authenticated %}Hello, {{ user.username }}.{% endif %}</p>
                 <p class="is-small"><span class="h-show-pc">
-                    hoặc
-                    </span><a class="text-secondary" href="#">đăng ký</a><span class="h-show-pc">
-                    
-                    miễn phí</span></p>
+                    </span><a class="text-secondary" href="{% url 'logout'%}">Logout</a><span class="h-show-pc"></span></p>
               </div>
             </div>
           </div>

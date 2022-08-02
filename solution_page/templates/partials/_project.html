@@ -1,0 +1,39 @@
+{% load static %}
+<div class="c-block is-small">
+    <div class="container">
+      <div class="c-box">
+        <div class="c-box__title">
+          <div class="c-box__title__name"><span class="text-medium text-label">Dự án</span>
+            tiêu biểu
+          </div>
+        </div>
+        <div class="c-box__content">
+          <div class="c-course-square-thumb is-col-3">
+            <ul>
+                {% for x in myProject %}
+              <li>
+                <div class="b-grid">
+                  <div class="b-grid__img"><a href="#"><img src="../media/{{ x.img }}" alt="image"></a></div>
+                  <div class="b-grid__content">
+                    <div class="b-grid__row">
+                      <h3 class="b-grid__title"><a href="#">{{ x.title }}</a></h3>
+                    </div>
+                    <div class="b-grid__row">
+                      <div class="c-user-comment">
+                        <div class="c-user-comment__left"><img src="{% static "old_images/images/icons/icon16-like.svg"%}"><img src="{% static "old_images/images/icons/icon16-heart.svg"%}"><img src="{% static "old_images/images/icons/icon16-happy.svg"%}"><span>+231</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <!--end c-course-square-thumb-->
+        </div>
+        <!--end c-box__content-->
+      </div>
+      <!--end c-box-->
+    </div>
+    <!--end container-->
+  </div>

@@ -1,10 +1,19 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from .views import UsernameValidationView
+from django.views.decorators.csrf import csrf_exempt
 
-app_name = 'solution_page'
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+    path('modalregister', views.modalregister, name='modalregister'),
+    path('login', views.login, name='login'),
+    path('register', views.register, name='register'),
+    path('validate-username', csrf_exempt(UsernameValidationView.as_view()), name='validate-username'),
+    path('logout', views.logout, name='logout')
 ]
 
-urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += [
+#     path('accounts/', include('django.contrib.auth.urls')),
+# ]

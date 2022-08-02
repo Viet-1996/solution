@@ -1,0 +1,40 @@
+
+<div class="c-block is-small c-newspaper-block">
+    <div class="container">
+      <div class="c-box">
+        <div class="c-box__title is-button">
+          <div class="c-box__title__name"><span class="text-medium text-label">Báo chí</span>
+            nói về chúng tôi
+          </div>
+          <div class="c-box__title__button"><a href="#">Xem toàn bộ<i class="icon12-angle-right-black"></i></a></div>
+        </div>
+        <div class="c-box__content">
+          <div class="c-newspaper-slider c-newspaper-grid">
+            <div class="owl-carousel js-newspaper-slider">
+                {% for x in myMedia %}
+              <div class="b-grid">
+                <div class="b-grid__img"><a href="#"><img src="../media/{{ x.img }}" alt="newspaper"></a></div>
+                <div class="b-grid__content">
+                  <div class="b-grid__row">
+                    <div class="b-grid__logo"><img src="../media/{{ x.logo }}" alt="logo"></div>
+                    <h3 class="b-grid__title"><a href="#">{{x.title}}</a></h3>
+                  </div>
+                </div>
+              </div>
+               {% endfor %}
+            </div>
+            <div class="owl-dots" id="newspaper-owl-dots">
+              <div class="owl-dot"><span>01</span></div>
+              <div class="owl-dot"><span>02</span></div>
+              <div class="owl-dot"><span>03</span></div>
+              <div class="owl-dot"><span>04</span></div>
+              <div class="owl-dot"><span>05</span></div>
+            </div>
+          </div>
+        </div>
+        <!--end c-box__content-->
+      </div>
+      <!--end c-box-->
+    </div>
+    <!--end container-->
+  </div>
