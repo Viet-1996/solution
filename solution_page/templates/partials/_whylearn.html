@@ -1,0 +1,35 @@
+{% load static %}
+<div class="c-block is-single bg-purple-light c-need-block">
+    <div class="container">
+      <div class="c-need-title"><img src="{%static "old_images/images/need-title.png"%}" alt="Trẻ em cần học lập trình"></div>
+      <div class="c-need-outer">
+        <div class="c-need-slider">
+          <div class="owl-carousel js-need-slider">
+            {% for x in myWhylearn %}
+            <div class="c-need-item is-green">
+              <div class="c-need-item__thumb"><a href="#"><img src="../media/{{ x.thumb }}" alt="need"><span class="c-need-item__tag">-{{x.discount}}%</span></a></div>
+              <div class="c-need-item__content">
+                <div class="c-need-item__row"><a class="c-need-item__title" href="#">{{ x.title }}</a>
+                  <div class="c-need-item__desc">{{ x.description }}</div><span class="c-need-item__sub">{{ x.subdes }}</span>
+                </div>
+                <div class="c-need-item__row">
+                  <div class="c-user-count">
+                    <figure><img src="upload/ava_1.png" alt="avatar"></figure>
+                    <figure><img src="upload/ava_2.png" alt="avatar"></figure>
+                    <figure><img src="upload/ava_3.png" alt="avatar"></figure>
+                    <span>+{{x.count}}<br>bạn đang học môn này</span>
+                  </div>
+                </div>
+                <div class="c-need-item__bottom">
+                  <div class="c-rate"><span>{{x.rating}}</span><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-o"></i><span>(1,229)</span></div>
+                </div>  
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="c-need-outer__img"><img src="{% static "old_images/images/need-img.png" %}" alt="Trẻ em cần học lập trình"></div>
+      </div>
+    </div>
+    <!--end container-->
+  </div>

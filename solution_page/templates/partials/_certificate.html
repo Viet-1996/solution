@@ -1,4 +1,4 @@
-{% load static %}
+{% for x in myCertificate %}
 <div class="c-block c-eaf-block">
     <div class="container">
       <div class="c-box">
@@ -10,32 +10,27 @@
         <div class="c-box__content">
           <div class="c-eaf">
             <div class="c-eaf__left">
-              <div class="c-eaf__img"><img src="{%static "old_images/upload/eaf.png" %}" alt="eaf"></div>
+              <div class="c-eaf__img"><img src="../media/{{ x.img }}" alt="eaf"></div>
               <div class="c-eaf__count">
-                <label><span>93</span>/100</label>
+                <label><span>{{ x.point }}</span>/100</label>
                 <p>điểm đạt chuẩn quốc tế chất lượng cao</p>
               </div>
             </div>
             <div class="c-eaf__right">
-              <div class="c-eaf__title">Phương pháp<br><b class="is-big">Giáo dục</b><br>Được
-                <b class="is-medium">đánh giá cao</b><br><span class="is-big-before">Bởi</span><b class="is-small">Tổ chức giáo dục quốc tế</b>
+              <div class="c-eaf__title">{{ x.title|safe }}
               </div>
               <div class="b-maincontent">
-                <p>EAF đánh giá rằng Học viện Teky đã ứng dụng khoa học – công nghệ vào các giáo trình của mình để nâng cao chất lượng các bài giảng cho học sinh</p>
-                <p>Tổ chức Giáo dục Phần Lan – Education Alliance Finland (EAF) đã đánh giá chương trình giảng dạy STEM và Công nghệ của TEKY 93/100 điểm đạt chuẩn quốc tế chất lượng cao, đứng top đầu trong số các tổ chức giáo dục được EAF đánh giá trên toàn thế giới.</p>
-                <div class="c-eaf__intro"><img src="{%static "old_images/upload/eaf-logo.png"%}" alt="eaf">
+               {{ x.maincontent|safe }}
+                <div class="c-eaf__intro"><img src="../media/{{x.logo}}" alt="eaf">
                   <p>
-                    Tổ chức Liên minh giáo dục Phần Lan
-                    <b>(Education Alliance Finland)</b>
-                    là một tổ chức giáo dục uy tín trên toàn cầu, chuyên tư vấn và đánh giá từ tổng thể đến chi tiết các giải pháp giáo dục trên thế giới.
+                    {{ x.intro|safe }}
                   </p>
                 </div>
-                <p>EAF đã tiến hành phân tích và đánh giá độc lập về chất lượng chương trình giảng dạy của TEKY – Hệ thống học viện giáo dục về STEAM và Công nghệ của Việt Nam dành cho trẻ em, đơn vị đã đạt được nhiều thành tựu, giải thưởng đáng nể cả trong và ngoài nước.</p>
-                <p>EAF lấy tham chiếu nội dung chương trình giảng dạy công nghệ của Anh Quốc, dựa trên tiêu chuẩn chất lượng sư phạm quốc tế, thực hiện bởi liên minh các nhà nghiên cứu và chuyên gia uy tín hàng đầu trong lĩnh vực giáo dục một cách riêng biệt.</p>
+                {{ x.subcontent|safe }}
               </div>
             </div>
           </div>
-          <div class="c-more is-landing-option"><a class="btn btn-orange btn-lg is-shadow-solid-green" href="#">Đăng ký học thử miễn phí</a></div>
+          {% include 'partials/_register.html'%}
         </div>
         <!--end c-box-content-->
       </div>
@@ -43,3 +38,4 @@
     </div>
     <!--end container-->
   </div>
+  {% endfor %}

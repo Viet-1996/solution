@@ -9,10 +9,8 @@
         </div>
         <div class="c-box__content">
           <div class="c-course-card-grid">
-            <ul>{% for i in count %}
-              {{ i }}
-                  {% for x in myCourse %}
-                  
+            <ul>
+                {% for x in myCourse %}
                 <li>
                   <div class="c-course-card">
                     <div class="c-course-card__thumb"><a href="#"><img src="../media/{{ x.img }}" alt="course"><span class="c-course-card__price">{{ x.price}}<sup>đ</sup></span></a></div>
@@ -27,7 +25,6 @@
                   </div>
                 </li>
                 {% endfor %}
-              {% endfor %}
             </ul>
           </div>
           <!--end c-course-card-grid-->

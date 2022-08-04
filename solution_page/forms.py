@@ -3,11 +3,10 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm 
 
-from solution_page.models import LoginUser
 
 class loginform(ModelForm):
     class Meta:
-        model = LoginUser
+        model = User
         fields = ('username', 'password')
         widgets = {
             'username' : forms.TextInput(attrs= {'class' : 'form-control c-placeholder-login'}),

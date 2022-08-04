@@ -6,11 +6,12 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('modalregister', views.modalregister, name='modalregister'),
-    path('login', views.login, name='login'),
-    path('register', views.register, name='register'),
-    path('validate-username', csrf_exempt(UsernameValidationView.as_view()), name='validate-username'),
-    path('logout', views.logout, name='logout')
+    path('modalregister/', views.modalregister, name='modalregister'),
+    path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
+    path('validate-username/', csrf_exempt(UsernameValidationView.as_view()), name='validate-username'),
+    path('logout/', views.logout, name='logout'),
+    path('tinymmce/', include('tinymce.urls')),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

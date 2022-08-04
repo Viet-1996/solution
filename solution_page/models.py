@@ -1,10 +1,12 @@
 from distutils.command.upload import upload
 from tkinter import CASCADE
+from turtle import position
 from typing import List
 from unicodedata import name
 from django.db import models
 from django.forms import CharField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from tinymce import models as tinymce_models
 
 class UploadVid(models.Model):
     title = models.CharField(max_length=200)
@@ -28,19 +30,22 @@ class LearningPath(models.Model):
 class Technology(models.Model):
     name = models.CharField(max_length=200)
     img = models.ImageField(upload_to='images')
-"""     @property
-    def context(self):
-        content = TechnologyList.objects.filter(name, self.name)
-        return content """
+    def __str__(self):
+        return self.name
 
 class TechnologyList(models.Model):
-    name = models.ForeignKey(Technology, on_delete=models.CASCADE)
+    technology = models.ForeignKey(Technology, on_delete=models.CASCADE, related_name = 'technologylist')
     content = models.CharField(max_length=200) 
+    def __str__(self):
+        return self.content 
 
 class Method(models.Model):
     name = models.CharField(max_length=200)
-    content = models.CharField(max_length=200)
+    content = tinymce_models.HTMLField()
     img = models.ImageField(upload_to='images')
+    order = models.IntegerField(
+        default=0,
+        )
 
 class Adviser(models.Model):
     title = models.CharField(max_length=200)
@@ -48,7 +53,7 @@ class Adviser(models.Model):
     img = models.ImageField(upload_to='images')
 
 class AdviserLink(models.Model):
-    title = models.ForeignKey(Adviser, on_delete=models.CASCADE)
+    title = models.ForeignKey(Adviser, on_delete=models.CASCADE, related_name='adviserlink')
     url = models.CharField(max_length=200)
     logo = models.ImageField(upload_to='images')
 
@@ -57,8 +62,8 @@ class AdviserLogo(models.Model):
     logo = models.ImageField(upload_to='images')
 
 class Certificate(models.Model):
-    titlename = models.CharField(max_length=200)
-    title = models.CharField(max_length=200)
+    titlename = tinymce_models.HTMLField()
+    title = tinymce_models.HTMLField()
     img = models.ImageField(upload_to='images')
     point = models.IntegerField(
         default=0,
@@ -66,7 +71,9 @@ class Certificate(models.Model):
             MaxValueValidator(100),
             MinValueValidator(0),
         ])
-    maincontent = models.CharField(max_length=200)
+    maincontent = tinymce_models.HTMLField()
+    intro = tinymce_models.HTMLField()
+    subcontent = tinymce_models.HTMLField()
     logo = models.ImageField(upload_to='images')
 
 class Award(models.Model):
@@ -90,6 +97,9 @@ class Course(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     img = models.ImageField(upload_to='images')
+    usercount = models.IntegerField(
+        default=0,
+    )
 
 class Parent(models.Model):
     name = models.CharField(max_length=200)
@@ -107,6 +117,17 @@ class WhyLearn(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     rating = models.FloatField(default=0)
+    subdes = models.CharField(max_length=100)
+    count = models.IntegerField(
+        default = 0,
+    )
+    discount = models.IntegerField(
+        default = 0,
+    )
+
+class UserCount(models.Model):
+    name = models.ForeignKey(WhyLearn, on_delete=models.CASCADE, related_name='usercount')
+    img = models.ImageField(upload_to='images')
 
 class User(models.Model):
     img = models.ImageField(upload_to='images')
@@ -122,12 +143,3 @@ class ModalRegister(models.Model):
     parent_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=50)
     phone_number = models.CharField(max_length=20)
-
-class LoginUser(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-
-class RegisterUser(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    email = models.CharField(max_length=20)

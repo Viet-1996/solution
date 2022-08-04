@@ -3,6 +3,8 @@ const feedBackArea = document.querySelector(".invalid_feedback");
 const retypePasswordField = document.querySelector("#id_password2");
 const PasswordField =  document.querySelector("#id_password1");
 const feedBackArea2 = document.querySelector(".invalid_password")
+const emailField = document.querySelector("#id_email")
+const feedBackArea3 = document.querySelector(".invalid_email")
 
 usernameField.addEventListener('keyup', (e) =>{
     const usernameVal = e.target.value;
@@ -24,8 +26,8 @@ usernameField.addEventListener('keyup', (e) =>{
     }
 });
 
-retypePasswordField.addEventListener('keyup', (e) =>{
-    const retypePasswordVal = e.target.value;
+retypePasswordField.addEventListener('keyup', (f) =>{
+    const retypePasswordVal = f.target.value;
     feedBackArea2.style.display = "none";
 
     if (retypePasswordVal != PasswordField.value ){
@@ -33,3 +35,13 @@ retypePasswordField.addEventListener('keyup', (e) =>{
         feedBackArea2.innerHTML = `<h6 style="color:#dc3545">${"Nhập lại mật khẩu không khớp"}</h6>`
     }
 });
+
+emailField.addEventListener('keyup', (g)=>{
+    const emailVal = g.target.value;
+    feedBackArea3.style.display = "none";
+    
+    if (!emailVal.includes("@") ){
+        feedBackArea3.style.display = "block";
+        feedBackArea3.innerHTML = `<h6 style="color:#dc3545">${"Địa chỉ email không hợp lệ"}</h6>`
+    }
+})

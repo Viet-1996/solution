@@ -4,7 +4,7 @@ from tkinter.tix import IMAGE
 from turtle import title
 from django.contrib import admin
 
-from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, ModalRegister, Parent, Project, TechnologyList, UploadVid, User, WhyChooseUs, LearningPath, Technology, WhyLearn
+from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, ModalRegister, Parent, Project, TechnologyList, UploadVid, User, UserCount, WhyChooseUs, LearningPath, Technology, WhyLearn
 
 class UploadVidAdmin(admin.ModelAdmin):
     list_display = ['title', 'url', 'img', 'quote', 'name']
@@ -73,6 +73,23 @@ class MediaAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     list_display = ['img']
 
+class UserCountInline(admin.TabularInline):
+    model = UserCount
+    extra = 5
+
+class WhylearnAdmin(admin.ModelAdmin):
+    list_display = ['title', 'thumb', 'description', 'rating', 'subdes', 'count', 'discount']
+    fieldsets = [
+        (None,      {'fields': ['title']}),
+        (None,      {'fields': ['thumb']}),
+        (None,      {'fields': ['description']}),
+        (None,      {'fields': ['subdes']}),
+        (None,      {'fields': ['count']}),
+        (None,      {'fields': ['discount']}),
+        (None,      {'fields': ['rating']}),
+    ]
+    inlines = [UserCountInline]
+
 admin.site.register(UploadVid, UploadVidAdmin)
 admin.site.register(Adviser, AdviserAdmin)
 admin.site.register(Award, AwardAdmin)
@@ -88,3 +105,4 @@ admin.site.register(WhyChooseUs, WhyChooseUsAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(LearningPath, LearningPathAdmin)
 admin.site.register(ModalRegister, ModalRegisterAdmin)
+admin.site.register(WhyLearn, WhylearnAdmin)

@@ -5,6 +5,7 @@ from msilib.schema import Media
 from multiprocessing import AuthenticationError
 from pipes import Template
 from re import template
+from telnetlib import AUTHENTICATION
 from urllib import request
 from xml.dom import UserDataHandler
 from django.http import HttpResponse, HttpResponseRedirect
@@ -13,9 +14,9 @@ from django.urls import is_valid_path, reverse
 from django.views import View
 from django.views.generic import TemplateView
 from solution_page.forms import UserCreationForm, loginform
-from .models import User as MyUser
+from .models import User as MyUser, UserCount, WhyLearn
 from .models import Media as MyMedia
-from .models import Adviser, AdviserLink, AdviserLogo, Award, Course, LearningPath, Method, Parent, Project, Technology, TechnologyList, UploadVid, WhyChooseUs, ModalRegister
+from .models import Adviser, AdviserLink, AdviserLogo, Award, Course, LearningPath, Method, Parent, Project, Technology, TechnologyList, UploadVid, WhyChooseUs, ModalRegister, Certificate
 from django.template import loader
 from django.http import HttpResponse 
 from django.contrib import messages
@@ -31,11 +32,9 @@ def index(request):
     myuploadvid = UploadVid.objects.latest()
     myWhyChooseUs = WhyChooseUs.objects.all().values()
     myLearningPath = LearningPath.objects.latest()
-    myTechnology = Technology.objects.all().values()
-    myTechnologyList = TechnologyList.objects.all()
-    myMethod = Method.objects.all().values()
-    myAdviser = Adviser.objects.all().values()
-    myAdviserLink = AdviserLink.objects.all()
+    myTechnology = Technology.objects.all()
+    myMethod = Method.objects.all().order_by('order').values()
+    myAdviser = Adviser.objects.all()
     myAdviserLogo = AdviserLogo.objects.all()
     myAward = Award.objects.all().values()
     myCourse = Course.objects.all().values()
@@ -43,16 +42,18 @@ def index(request):
     myParent = Parent.objects.all().values()
     myMedia = MyMedia.objects.all().values()    
     myUser = MyUser.objects.all().values()
+    myWhylearn = WhyLearn.objects.all().values()
+    myUsercount = UserCount.objects.all()
+    myCertificate = Certificate.objects.all().values()
     template = loader.get_template('solution_page/index.html')
     context = {
     'myuploadvid': myuploadvid,
     'myWhyChooseUs' : myWhyChooseUs,
     'myLearningPath' : myLearningPath,
     'myTechnology' : myTechnology,
-    'myTechnologyList' : myTechnologyList,
-    'myMethod' : myMethod,
+    'myMethod' : myMethod,    
+    'myCertificate' : myCertificate,
     'myAdviser' : myAdviser,
-    'myAdviserLink' : myAdviserLink,
     'myAdviserLogo' : myAdviserLogo,
     'myAward' : myAward,
     'myCourse' : myCourse,
@@ -60,6 +61,8 @@ def index(request):
     'myParent' : myParent,
     'myMedia' : myMedia,
     'myUser' : myUser,
+    'myWhylearn' : myWhylearn,
+    'myUsercount' : myUsercount,
     }
     return HttpResponse(template.render(context, request))
 
@@ -76,6 +79,8 @@ def modalregister(request):
         return HttpResponseRedirect('./')
 
 def login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/solution_page')
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -86,6 +91,7 @@ def login(request):
         else:
             messages.error(request,"Sai tên đăng nhập hoặc mật khẩu")
     return render(request, 'solution_page/login.html',context={'form':loginform()})
+    
 
 def register(request):
     if request.method == "POST":
@@ -93,6 +99,9 @@ def register(request):
         if form.is_valid():
             user = form.save()
             messages.success(request, "Đăng ký thành công")
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(request, username = username, password = password)
             auth_login(request, user)
             return HttpResponseRedirect('./')
         messages.error(request, "Tên đăng nhập hoặc mật khẩu không hợp lệ")
@@ -108,4 +117,4 @@ class UsernameValidationView(View):
 
 def logout(request):
     auth_logout(request)
-    return HttpResponseRedirect('./')
+    return HttpResponseRedirect('/solution_page')

@@ -18,12 +18,8 @@
                   <div class="b-grid__content">
                     <div class="b-grid__row">
                       <h3><b>{{ x.name}}</b></h3><br>
-                      <ul>
-                        {% for y in myTechnologyList%}
-                        {% if y.name.name == x.name %}
-                          <li>{{ y.content }}</li>
-                        {% endif %}
-                        {% endfor %}
+                      <ul>{% for y in x.technologylist.all %} 
+                        <li>{{ y.content }}</li>{% endfor %}
                       </ul>
                     </div>
                   </div>
