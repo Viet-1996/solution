@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--Variables to set active page in sidebar-->
+  <head>
+    <!--Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="content-language" content="vi">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Template">
+    <meta name="COPYRIGHT" content="© Template">
+    <meta name="robots" content="noodp,index,follow">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="static/images/favicon.ico">
+    <title>Teky - Giải pháp giáo dục</title>
+    <!--Include CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  </head>
+<!-- modal Register online-->
+<form action="modalregister" id="myform" method="post">
+    {% csrf_token %}
+<div id="modalRegisterOnline" tabindex="-1" >
+<div class="modal-dialog modal-custom">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Đăng ký tư vấn miễn phí</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="c-small-form b-form">
+          <div class="form-group">
+            <label>Họ và tên học sinh</label>
+            <input class="form-control" name="student_name" id="student_name" require type="text" placeholder="Nhập họ và tên học sinh">
+            <div class="invalid_feedback"></div>
+        </div>
+          <div class="form-group">
+            <label>Năm sinh</label>
+            <select class="form-control" name="date_of_birth">
+              <option>Chọn năm sinh</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+              <option value="2014">2014</option>
+              <option value="2013">2013</option>
+              <option value="2012">2012</option>
+              <option value="2011">2011</option>
+              <option value="2010">2010</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Họ và tên phụ huynh</label>
+            <input class="form-control" name="parent_name" id="parent_name" require type="text" placeholder="Nhập họ và tên phụ huynh">
+            <div class="invalid_parentname"></div>
+          </div>
+          <div class="form-group">
+            <label>Email liên hệ</label>
+            <input class="form-control" name="email" id="email" require type="text" placeholder="Nhập email liên hệ">
+            <div class="invalid_email"></div>
+          </div>
+          <div class="form-group">
+            <label>Số điện thoại liên hệ</label>
+            <input class="form-control" name="phone_number" require type="text" placeholder="Nhập số điện thoại liên hệ">
+          </div>
+          <div class="form-group is-last">
+            <button class="btn btn-primary btn-block btn-lg" type="submit">Đăng ký</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+</form>
+
+<!-- end modal Register online-->
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-1.4.1.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel2.thumbs.js' %}"></script>
+<script src="{% static 'js/jquery.matchHeight-min.js' %}"></script>
+<script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+<script src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.js' %}"></script>
+<script src="{% static 'js/jquery.inview.js' %}"></script>
+<script src="{% static 'js/jquery.countTo.js' %}"></script>
+<script src="{% static 'js/jquery.scrollchaser.min.js' %}"></script>
+<script src="{% static 'js/jquery.scrollbar.min.js' %}"></script>
+<script src="{% static 'js/function.js' %}"></script>
+<script src="{% static 'js/style.js' %}"></script>
+<script src="{% static 'js/modalregister.js' %}"></script>

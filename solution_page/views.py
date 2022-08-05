@@ -1,28 +1,19 @@
-from email import message
-from hashlib import new
 import json
 from msilib.schema import Media
-from multiprocessing import AuthenticationError
-from pipes import Template
-from re import template
 from telnetlib import AUTHENTICATION
-from urllib import request
-from xml.dom import UserDataHandler
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
-from django.urls import is_valid_path, reverse
+from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView
 from solution_page.forms import UserCreationForm, loginform
-from .models import User as MyUser, UserCount, WhyLearn
+from .models import User as MyUser, WhyLearn
 from .models import Media as MyMedia
-from .models import Adviser, AdviserLink, AdviserLogo, Award, Course, LearningPath, Method, Parent, Project, Technology, TechnologyList, UploadVid, WhyChooseUs, ModalRegister, Certificate
+from .models import Adviser, AdviserLogo, Award, Course, LearningPath, Method, Parent, Project, Technology, UploadVid, WhyChooseUs, ModalRegister, Certificate
 from django.template import loader
 from django.http import HttpResponse 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User, auth
+from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login
 from django.http import JsonResponse
 from django.contrib.auth import logout as auth_logout
@@ -30,7 +21,7 @@ from django.contrib.auth import logout as auth_logout
 @login_required(login_url='/solution_page/login', redirect_field_name=None)
 def index(request):
     myuploadvid = UploadVid.objects.latest()
-    myWhyChooseUs = WhyChooseUs.objects.all().values()
+    myWhyChooseUs = WhyChooseUs.objects.all().order_by('order').values()
     myLearningPath = LearningPath.objects.latest()
     myTechnology = Technology.objects.all()
     myMethod = Method.objects.all().order_by('order').values()
@@ -38,12 +29,11 @@ def index(request):
     myAdviserLogo = AdviserLogo.objects.all()
     myAward = Award.objects.all().values()
     myCourse = Course.objects.all().values()
-    myProject = Project.objects.all().values()
+    myProject = Project.objects.all()
     myParent = Parent.objects.all().values()
     myMedia = MyMedia.objects.all().values()    
     myUser = MyUser.objects.all().values()
-    myWhylearn = WhyLearn.objects.all().values()
-    myUsercount = UserCount.objects.all()
+    myWhylearn = WhyLearn.objects.all()
     myCertificate = Certificate.objects.all().values()
     template = loader.get_template('solution_page/index.html')
     context = {
@@ -62,7 +52,6 @@ def index(request):
     'myMedia' : myMedia,
     'myUser' : myUser,
     'myWhylearn' : myWhylearn,
-    'myUsercount' : myUsercount,
     }
     return HttpResponse(template.render(context, request))
 
@@ -77,6 +66,7 @@ def modalregister(request):
         member.save()
         messages.success(request, 'Đăng ký thành công')
         return HttpResponseRedirect('./')
+    return render(request, 'solution_page/modalregister2.html')
 
 def login(request):
     if request.user.is_authenticated:
@@ -94,6 +84,8 @@ def login(request):
     
 
 def register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/solution_page')
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -114,6 +106,14 @@ class UsernameValidationView(View):
         if User.objects.filter(username = username).exists():
             return JsonResponse({'username_error':'Tên đăng nhập đã được sử dụng'})
         return JsonResponse({'username_valid': True})
+
+class StudentnameValiadtionView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        studentname = data['studentname']  
+        if not str(studentname).isalnum():
+            return JsonResponse({'studentname_error': 'Họ và tên không được chứa kí tự đặc biệt'})
+        return JsonResponse({'studentname_valid': True})
 
 def logout(request):
     auth_logout(request)

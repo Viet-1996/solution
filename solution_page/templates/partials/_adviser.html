@@ -19,7 +19,7 @@
                     <div class="c-adviser-item__title">{{ x.title }}</div>
                     <div class="c-adviser-item__pos">{{ x.position }}</div>
                   </div>
-                  <div class="c-adviser-item__row">{% for y in x.adviserlink.all %}<center><a class="c-adviser-item__link" href="{{ y.url }}"><img src="../media/{{ y.logo }}" style="width:22px;height:22px"></a></center>{% endfor %}</div>
+                  <div class="c-adviser-item__row">{% for y in x.adviserlink.all %}<a class="c-adviser-item__link" href="{{ y.url }}"><i class="icon24-{{y.link}}-square-black"></i></a>{% endfor %}</div>
                 </div>
               </div>
                 {% endfor %}

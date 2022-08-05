@@ -1,5 +1,6 @@
+{% load static %}
 <!-- modal Register online-->
-<form action="modalregister" method="post">
+<form action="modalregister/" method="post" id="modalregister">
     {% csrf_token %}
 <div class="modal fade" id="modalRegisterOnline" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog modal-custom">
@@ -12,8 +13,9 @@
         <div class="c-small-form b-form">
           <div class="form-group">
             <label>Họ và tên học sinh</label>
-            <input class="form-control" name="student_name" type="text" placeholder="Nhập họ và tên học sinh">
-          </div>
+            <input class="form-control" id="student_name" name="student_name" require type="text" value="{{ user.username }}">
+            <div class="invalid_feedback"></div>
+        </div>
           <div class="form-group">
             <label>Năm sinh</label>
             <select class="form-control" name="date_of_birth">
@@ -29,15 +31,18 @@
           </div>
           <div class="form-group">
             <label>Họ và tên phụ huynh</label>
-            <input class="form-control" name="parent_name" type="text" placeholder="Nhập họ và tên phụ huynh">
+            <input class="form-control" name="parent_name" id="parent_name" require type="text" placeholder="Nhập họ và tên phụ huynh">
+            <div class="invalid_parentname"></div>
           </div>
           <div class="form-group">
             <label>Email liên hệ</label>
-            <input class="form-control" name="email" type="text" placeholder="Nhập email liên hệ">
+            <input class="form-control" name="email" id="email" require type="text" value="{{ user.email }}">
+            <div class="invalid_email"></div>
           </div>
           <div class="form-group">
             <label>Số điện thoại liên hệ</label>
-            <input class="form-control" name="phone_number" type="text" placeholder="Nhập số điện thoại liên hệ">
+            <input class="form-control" name="phone_number" id="phone_number" require type="text" placeholder="Nhập số điện thoại liên hệ">
+            <div class="invalid_phonenumber"></div>
           </div>
           <div class="form-group is-last">
             <button class="btn btn-primary btn-block btn-lg" type="submit">Đăng ký</button>
@@ -48,5 +53,5 @@
 </div>
 </div>
 </form>
-
+<script src="{% static 'js/modalregister.js' %}"></script>
 <!-- end modal Register online-->

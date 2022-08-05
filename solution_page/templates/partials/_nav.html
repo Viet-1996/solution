@@ -39,34 +39,34 @@
       <div class="container">
         <div class="c-header-inner">
           <div class="c-header-left">
-            <div class="c-logo"><a href="index.html"><img class="is-short"  src="{% static "images/logo.svg" %}" alt="logo"><img class="is-full"  src="{% static "images/logo-full.svg" %}" alt="logo"></a></div>
+            <div class="c-logo"><a href="{% url 'index' %}"><img class="is-short"  src="{% static "images/logo.svg" %}" alt="logo"><img class="is-full"  src="{% static "images/logo-full.svg" %}" alt="logo"></a></div>
             <div class="c-header-course c-dropdown-smart-click">
-              <div class="c-header-course__current js-dropdown-smart-btn"><img src="{% static "images/icon16-grid-white.svg" %}"><span>Khoá học</span></div>
+              <div class="c-header-course__current js-dropdown-smart-btn"><i class="icon16-grid-white"></i><span>Khoá học</span></div>
               <div class="c-dropdown-smart is-large">
                 <div class="c-dropdown-smart__inner">
                   <div class="c-menu-box">
                     <div class="c-menu-box__left">
                       <ul>
-                        <li><a href="#"><img src="{% static "old_images/images/icons/icon24-home.svg" %}">Trang chủ</a></li>
-                        <li><a href="#"><img src="{% static "old_images/images/icons/icon24-menu.svg" %}">Cộng đồng</a></li>
-                        <li><a href="#"><img src="{% static "old_images/images/icons/icon24-folder.svg" %}">Khoá học</a></li>
-                        <li><a href="#"><img src="{% static "old_images/images/icons/icon24-note.svg" %}">Dự án</a></li>
-                        <li><a href="#"><img src="{% static "old_images/images/icons/icon24-money.svg" %}"></i>Giải pháp</a></li>
+                        <li><a href="#"><i class="icon24-home"></i>Trang chủ</a></li>
+                        <li><a href="#"><i class="icon24-menu"></i>Cộng đồng</a></li>
+                        <li><a href="#"><i class="icon24-folder"></i>Khoá học</a></li>
+                        <li><a href="#"><i class="icon24-note"></i>Dự án</a></li>
+                        <li><a href="#"><i class="icon24-money"></i>Giải pháp</a></li>
                       </ul>
                     </div>
                     <div class="c-menu-box__right">
                       <div class="c-menu-box__block">
-                        <label><a href="#"><img src="{% static "old_images/images/icons/icon24-coding-black.svg" %}">Lập trình & Phát triển ứng dụng</a></label>
+                        <label><a href="#"><i class="icon24-coding-black"></i>Lập trình & Phát triển ứng dụng</a></label>
                         <ul>
-                          <li><a href="#">Mầm non công nghệ</a></li>
-                          <li><a href="#">Bé làm Game</a></li>
-                          <li><a href="#">Siêu nhân lập trình Web</a></li>
-                          <li><a href="#">Siêu nhân lập trình App</a></li>
-                          <li><a href="#">Siêu nhân lập trình Game 3D & VR với Unity</a></li>
+                          <li><a class="is-flex" href="#"><span class="badge badge-primary">5-6 tuổi</span>Mầm non công nghệ</a></li>
+                          <li><a class="is-flex" href="#"><span class="badge badge-primary">5-6 tuổi</span>Bé làm Game</a></li>
+                          <li><a class="is-flex" href="#"><span class="badge badge-primary">5-6 tuổi</span>Siêu nhân lập trình Web</a></li>
+                          <li><a class="is-flex" href="#"><span class="badge badge-primary">5-6 tuổi</span>Siêu nhân lập trình App</a></li>
+                          <li><a class="is-flex" href="#"><span class="badge badge-primary">5-6 tuổi</span>Siêu nhân lập trình Game 3D & VR với Unity</a></li>
                         </ul>
                       </div>
                       <div class="c-menu-box__block">
-                        <label><a href="#"><img src="{% static "old_images/images/icons/icon24-wireless-connectivity-black.svg" %}">Robot & Điện tử tự động</a></label>
+                        <label><a href="#"><i class="icon24-wireless-connectivity-black"></i>Robot & Điện tử tự động</a></label>
                         <ul>
                           <li><a href="#">Khám phá Robotics</a></li>
                           <li><a href="#">Xưởng chế tạo Robot</a></li>
@@ -74,7 +74,7 @@
                         </ul>
                       </div>
                       <div class="c-menu-box__block">
-                        <label><img src="{% static "old_images/images/icons/icon24-3d-black.svg" %}">3D & Truyền thông đa phương tiện</a></label>
+                        <label><a href="#"><i class="icon24-3d-black"></i>3D & Truyền thông đa phương tiện</a></label>
                         <ul>
                           <li><a href="#">DIGI Girl: Stem Art</a></li>
                           <li><a href="#">DIGI Style: Multimedia</a></li>
@@ -122,15 +122,15 @@
           </div>
           <div class="c-menu">
             <ul>
-              <li class="active"><a href="#"><img src="{% static "old_images/images/icons/icon24-home.svg" %}"><span>Trang chủ</span></a></li>
-              <li><a href="#"><img src="{% static "old_images/images/icons/icon24-menu.svg" %}"><span>Cộng đồng</span></a></li>
-              <li><a href="#"><img src="{% static "old_images/images/icons/icon24-folder.svg" %}"><span>Khoá học</span></a></li>
-              <li><a href="#"><img src="{% static "old_images/images/icons/icon24-note.svg" %}"><span>Dự án</span></a></li>
-              <li><a href="#"><img src="{% static "old_images/images/icons/icon24-money.svg" %}"><span>Giải pháp</span></a></li>
+              <li class="active"><a href="#"><i class="icon24-home"></i><span>Trang chủ</span></a></li>
+              <li><a href="#"><i class="icon24-menu"></i><span>Cộng đồng</span></a></li>
+              <li><a href="#"><i class="icon24-folder"></i><span>Khoá học</span></a></li>
+              <li><a href="#"><i class="icon24-note"></i><span>Dự án</span></a></li>
+              <li><a href="#"><i class="icon24-money"></i><span>Giải pháp</span></a></li>
             </ul>
           </div>
           <div class="c-header-rss">
-            <div class="c-header-rss__icon"><img src="{% static "old_images/images/icons/icon-medal" %}"></div>
+            <div class="c-header-rss__icon"><img src="{% static "old_images/images/icons/icon-medal.svg" %}"></div>
             <div class="c-header-rss__text">
               <p><a href="#">Cuộc thi: TEKY Young Tallent</a></p>
               <p class="is-small">

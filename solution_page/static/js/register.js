@@ -8,7 +8,7 @@ const feedBackArea3 = document.querySelector(".invalid_email")
 
 usernameField.addEventListener('keyup', (e) =>{
     const usernameVal = e.target.value;
-    usernameField.classList.add("is-invalid");
+    usernameField.classList.remove("is-invalid");
     feedBackArea.style.display = "none";
 
     if (usernameVal.length > 0) {
