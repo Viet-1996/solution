@@ -8,12 +8,10 @@
         </div>
         <div class="c-box__content">
           <div class="bg-shadow is-border-none is-no-padding c-course-gallery">
-            <ul>
-                {% for x in myUser %}
+            <ul>{% for x in myUser %}
               <li>
                 <div class="c-gallery-item"><a class="fancybox-image" rel="gallery" href=""><img src="../media/{{ x.img }}" alt="gallery"></a></div>
-              </li>
-              {% endfor %}
+              </li>{% endfor %}
             </ul>
           </div>
         </div>

@@ -1,0 +1,21 @@
+</span>{% if x.rating == 1 %}
+<i class="icon12-star"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i>
+{% elif x.rating == 2 %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i>
+{% elif x.rating == 3 %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i>
+{% elif x.rating == 4 %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-o"></i>
+{% elif x.rating == 5 %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i>
+{% elif x.rating < 1 %}
+<i class="icon12-star-half"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i>
+{% elif x.rating < 2 %}
+<i class="icon12-star"></i><i class="icon12-star-half"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i>
+{% elif x.rating < 3 %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-half"></i><i class="icon12-star-o"></i><i class="icon12-star-o"></i>
+{% elif x.rating < 4 %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-half"></i><i class="icon12-star-o"></i>
+{% else %}
+<i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star"></i><i class="icon12-star-half"></i>
+{% endif %}<span>

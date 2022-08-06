@@ -19,18 +19,13 @@
             <div class="c-eaf__right">
               <div class="c-eaf__title">{{ x.title|safe }}
               </div>
-              <div class="b-maincontent">
-               {{ x.maincontent|safe }}
+              <div class="b-maincontent">{{ x.maincontent|safe }}
                 <div class="c-eaf__intro"><img src="../media/{{x.logo}}" alt="eaf">
-                  <p>
-                    {{ x.intro|safe }}
-                  </p>
-                </div>
-                {{ x.subcontent|safe }}
+                  <p>{{ x.intro|safe }}</p>
+                </div>{{ x.subcontent|safe }}
               </div>
             </div>
-          </div>
-          {% include 'partials/_register.html'%}
+          </div>{% include 'partials/_register.html'%}
         </div>
         <!--end c-box-content-->
       </div>

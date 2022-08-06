@@ -11,7 +11,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('validate-username', csrf_exempt(UsernameValidationView.as_view()), name='validate-username'),
     path('logout/', views.logout, name='logout'),
-    path('tinymmce/', include('tinymce.urls')),
+    path('tinymce/', include('tinymce.urls')),
     path('validate-studentname', csrf_exempt(StudentnameValiadtionView.as_view()), name='validate-studentname')
 ]
 

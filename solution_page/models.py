@@ -3,6 +3,12 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from tinymce import models as tinymce_models
 
+
+class NameIcon(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
+
 class UploadVid(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
@@ -70,7 +76,7 @@ class Adviser(models.Model):
 class AdviserLink(models.Model):
     title = models.ForeignKey(Adviser, on_delete=models.CASCADE, related_name='adviserlink')
     url = models.CharField(max_length=200)
-    link = models.CharField(max_length=30)
+    logo = models.ForeignKey(NameIcon, on_delete=models.CASCADE)
 
 class AdviserLogo(models.Model):
     description = models.CharField(max_length=200)
@@ -129,18 +135,15 @@ class Course(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     img = models.ImageField(upload_to='images')
-    usercount = models.IntegerField(
-        default=0,
-    )
-    order = models.IntegerField(
-        default=0,
-    )
+    usercount = models.IntegerField(default=0)
+    order = models.IntegerField(default=0)
     class Meta:
         verbose_name_plural = 'Dự án tiêu biểu'
 
+
 class ProjectIcon(models.Model):
     Project = models.ForeignKey(Project, on_delete= models.CASCADE, related_name='projecticon')
-    img = models.ImageField(upload_to='images')
+    NameIcon = models.ForeignKey(NameIcon, on_delete=models.CASCADE, related_name='nameicon')
 
 class Parent(models.Model):
     name = models.CharField(max_length=200)
@@ -167,17 +170,17 @@ class WhyLearn(models.Model):
     thumb = models.ImageField(upload_to='images')
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    rating = models.FloatField(default=0)
-    subdes = models.CharField(max_length=100)
-    order = models.IntegerField(
+    rating = models.FloatField(
         default=0,
-    )
-    count = models.IntegerField(
-        default = 0,
-    )
-    discount = models.IntegerField(
-        default = 0,
-    )
+        validators=[
+            MaxValueValidator(5.0),
+            MinValueValidator(0),
+        ])
+    subdes = models.CharField(max_length=100)
+    vote = models.IntegerField(default=0)
+    order = models.IntegerField(default=0)
+    count = models.IntegerField(default = 0)
+    discount = models.IntegerField(default = 0)
     class Meta:
         verbose_name_plural = 'Trẻ em cần học lập trình'
 
@@ -187,9 +190,7 @@ class UserIcon(models.Model):
 
 class User(models.Model):
     img = models.ImageField(upload_to='images')
-    order = models.IntegerField(
-        default=0,
-    )
+    order = models.IntegerField(default=0)
     class Meta:
         verbose_name_plural = 'Thư viện hình ảnh'
 

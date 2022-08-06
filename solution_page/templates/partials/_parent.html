@@ -14,15 +14,13 @@
 <br><br><br>
 <div class="lwt-parent-outer">
     <div class="lwt-parent-slider">
-      <div class="owl-carousel js-lwt-parent">
-        {% for x in myParent %}
+      <div class="owl-carousel js-lwt-parent">{% for x in myParent %}
         <div class="lwt-parent-item">
           <div class="lwt-parent-item__head">
             <div class="lwt-parent-item__avatar"><img src="../media/{{ x.avatar }}" alt="avatar"></div><span class="lwt-parent-item__name">{{ x.name }}</span><span class="lwt-parent-item__poi">{{ x.studentname }}</span>
           </div>
           <div class="lwt-parent-item__content">{{ x.content }}</div>
-        </div>
-        {% endfor %}
+        </div>{% endfor %}
       </div>
       <!-- owl-carousel-->
     </div>

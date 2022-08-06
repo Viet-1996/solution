@@ -10,8 +10,7 @@
         </div>
         <div class="c-box__content">
           <div class="c-newspaper-slider c-newspaper-grid">
-            <div class="owl-carousel js-newspaper-slider">
-                {% for x in myMedia %}
+            <div class="owl-carousel js-newspaper-slider">{% for x in myMedia %}
               <div class="b-grid">
                 <div class="b-grid__img"><a href="#"><img src="../media/{{ x.img }}" alt="newspaper"></a></div>
                 <div class="b-grid__content">
@@ -20,8 +19,7 @@
                     <h3 class="b-grid__title"><a href="#">{{x.title}}</a></h3>
                   </div>
                 </div>
-              </div>
-               {% endfor %}
+              </div>{% endfor %}
             </div>
             <div class="owl-dots" id="newspaper-owl-dots">
               <div class="owl-dot"><span>01</span></div>

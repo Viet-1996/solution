@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, ModalRegister, Parent, Project, ProjectIcon, TechnologyList, UploadVid, User, UserIcon, WhyChooseUs, LearningPath, Technology, WhyLearn
+from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, ModalRegister, NameIcon, Parent, Project, ProjectIcon, TechnologyList, UploadVid, User, UserIcon, WhyChooseUs, LearningPath, Technology, WhyLearn
 
 class UploadVidAdmin(admin.ModelAdmin):
     list_display = ['title', 'url', 'quote', 'name']
@@ -73,6 +73,9 @@ class ProjectAdmin(admin.ModelAdmin):
     ]
     inlines = [ProjectIconInLine]
 
+class NameIconAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
 class ParentAdmin(admin.ModelAdmin):
     list_display = ['name', 'studentname', 'content', 'order']
 
@@ -97,6 +100,7 @@ class WhylearnAdmin(admin.ModelAdmin):
         (None,      {'fields': ['discount']}),
         (None,      {'fields': ['rating']}),
         (None,      {'fields': ['order']}),
+        (None,      {'fields': ['vote']}),
     ]
     inlines = [UserCountInline]
 
@@ -116,3 +120,4 @@ admin.site.register(User, UserAdmin)
 admin.site.register(LearningPath, LearningPathAdmin)
 admin.site.register(ModalRegister, ModalRegisterAdmin)
 admin.site.register(WhyLearn, WhylearnAdmin)
+admin.site.register(NameIcon, NameIconAdmin)

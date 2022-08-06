@@ -8,8 +8,7 @@
         </div>
         <div class="c-box__content">
           <div class="c-adviser-slider">
-            <div class="owl-carousel js-adviser-slider">
-                {% for x in myAdviser  %}
+            <div class="owl-carousel js-adviser-slider">{% for x in myAdviser  %}
               <div class="c-adviser-item">
                 <div class="c-adviser-item__thumb">
                   <figure><img src="../media/{{ x.img }}" alt="adviser"></figure>
@@ -19,23 +18,20 @@
                     <div class="c-adviser-item__title">{{ x.title }}</div>
                     <div class="c-adviser-item__pos">{{ x.position }}</div>
                   </div>
-                  <div class="c-adviser-item__row">{% for y in x.adviserlink.all %}<a class="c-adviser-item__link" href="{{ y.url }}"><i class="icon24-{{y.link}}-square-black"></i></a>{% endfor %}</div>
+                  <div class="c-adviser-item__row">{% for y in x.adviserlink.all %}<a class="c-adviser-item__link" href="{{ y.url }}"><i class="{{y.logo.name}}"></i></a>{% endfor %}</div>
                 </div>
-              </div>
-                {% endfor %}
+              </div>{% endfor %}
             </div>
           </div>
           <div class="c-adviser-title">Cùng đội ngũ chuyên gia từ các đối tác giáo dục quốc tế</div>
             <div class="c-adviser-desc">{% for z in myAdviserLogo %} {{z.description}}, {% endfor %} …</div>
                 <div class="c-adviser-logo-slider">
-                    <div class="owl-carousel js-adviser-logo-slider">
-                        {% for z in myAdviserLogo %}
+                    <div class="owl-carousel js-adviser-logo-slider">{% for z in myAdviserLogo %}
                         <div class="c-adviser-logo">
                             <div class="c-adviser-logo__inner">
                             <figure><img src="../media/{{ z.logo }}" alt="logo"></figure>
                             </div>
-                        </div>
-                        {% endfor %}
+                        </div>{% endfor %}
                     </div>
                 </div>
             {% include 'partials/_register.html'%}

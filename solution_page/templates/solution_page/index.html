@@ -24,7 +24,7 @@
     {% include 'solution_page/modalregister.html'%}
     {% if messages %}
     {% for message in messages %}
-      <h2>{{ message }}</h2>
+      <script>alert('{{ message }}');</script>
     {% endfor %}
     {% endif %}
     <!--Header part-->
@@ -252,6 +252,7 @@
     <script src="{% static 'js/jquery.scrollbar.min.js' %}"></script>
     <script src="{% static 'js/function.js' %}"></script>
     <script src="{% static 'js/style.js' %}"></script>
+    <script scr="{% static 'js/register.js' %}"></script>
     <!--Page specific javascripts part-->
   </body>
 </html>

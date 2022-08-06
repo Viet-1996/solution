@@ -6,6 +6,7 @@ const parentnameField = document.querySelector("#parent_name")
 const feedBackArea2 = document.querySelector(".invalid_parentname")
 const phonenumberField = document.querySelector("#phone_number")
 const feedbackArea4 = document.querySelector(".invalid_phonenumber")
+const form = document.querySelector("#modalregister")
 
 studentnameField.addEventListener('keyup', (e) =>{
     const studentnameVal = e.target.value;
@@ -21,7 +22,7 @@ studentnameField.addEventListener('keyup', (e) =>{
             if(data.studentname_error){
                 studentnameField.classList.add("is-invalid");
                 feedBackArea.style.display = "block";
-                feedBackArea.innerHTML = `<h6>${data.studentname_error}</h6>`
+                feedBackArea.innerHTML = `<h6 style="color:red">${data.studentname_error}</h6>`
             }
         });
     }
@@ -31,11 +32,11 @@ emailField.addEventListener('keyup', (g)=>{
     const emailVal = g.target.value;
     emailField.classList.remove("is-invalid");
     feedBackArea3.style.display = "none";
-    
+
     if (!emailVal.includes("@") ){
         feedBackArea3.style.display = "block";
         emailField.classList.add("is-invalid");
-        feedBackArea3.innerHTML = `<h6 style="color:#dc3545">${"Địa chỉ email không hợp lệ"}</h6>`
+        feedBackArea3.innerHTML = `<h6 style="color:red">${"Địa chỉ email không hợp lệ"}</h6>`
     }
 })
 
@@ -53,13 +54,14 @@ parentnameField.addEventListener('keyup', (f) =>{
             if(data.studentname_error){
                 parentnameField.classList.add("is-invalid");
                 feedBackArea2.style.display = "block";
-                feedBackArea2.innerHTML = `<h6>${data.studentname_error}</h6>`
+                feedBackArea2.innerHTML = `<h6 style="color:red">${data.studentname_error}</h6>`
             }
         });
     }
 });
 
 phonenumberField.addEventListener('keyup', (h) =>{
+    phonenumberVal = h.target.value
     feedbackArea4.style.display = "none";
     const phoneno = /^\(?[0]{1}\)?([0-9]{9})$/;
     phonenumberField.classList.remove("is-invalid");
@@ -67,15 +69,39 @@ phonenumberField.addEventListener('keyup', (h) =>{
     if (!phonenumberVal.match(phoneno)){
         phonenumberField.classList.add("is-invalid");
         feedbackArea4.style.display = "block";
-        feedbackArea4.innerHTML = `<h6 style="color:#dc3545">${"Số điện thoại không hợp lệ"}</h6>`
+        feedbackArea4.innerHTML = `<h6 style="color:red">${"Số điện thoại không hợp lệ"}</h6>`
     }
 })
 
-$("#modalregister").submit(function(){
-    if(is-invalid){
-        alert("Form đăng kí không hợp lệ")
-        return false;
-    } else{
-        return true;
+form.addEventListener('submit', function(i){
+    i.preventDefault();
+    let isStudentnameValid;
+    if (!studentnameField.classList.contains("is-invalid") ) {
+        isStudentnameValid = true;
+    } else {
+        isStudentnameValid = false;
+    }
+    let isEmailValid;
+    if (!emailField.classList.contains("is-invalid")) {
+        isEmailValid = true;
+    } else {
+        isEmailValid = false
+    }
+    let isParentnameValid;
+    if (!parentnameField.classList.contains("is-invalid")) {
+        isParentnameValid = true;
+    } else {
+        isParentnameValid = false;
+    }
+    let isPhonenumberValid;
+    if (!phonenumberField.classList.contains('is-invalid')) {
+        isPhonenumberValid = true;
+    } else {
+        isPhonenumberValid = false;
+    }
+    let isFormValid = isStudentnameValid && isParentnameValid && isEmailValid && isPhonenumberValid;
+    console.log(isFormValid);
+    if (isFormValid){
+        $(this).unbind('submit').submit()
     }
 })

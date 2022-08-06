@@ -9,8 +9,7 @@
         </div>
         <div class="c-box__content">
           <div class="c-course-square-thumb is-col-3">
-            <ul>
-                {% for x in myProject %}
+            <ul>{% for x in myProject %}
               <li>
                 <div class="b-grid">
                   <div class="b-grid__img"><a href="#"><img src="../media/{{ x.img }}" alt="image"></a></div>
@@ -20,13 +19,12 @@
                     </div>
                     <div class="b-grid__row">
                       <div class="c-user-comment">
-                        <div class="c-user-comment__left">{% for y in x.projecticon.all %}<img src="../media/{{ y.img }}">{% endfor %}<span>+{{x.usercount}}</span></div>
+                        <div class="c-user-comment__left">{% for y in x.projecticon.all %}<i class="{{ y.NameIcon.name }}"></i>{% endfor %}<span>+{{x.usercount}}</span></div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </li>
-              {% endfor %}
+              </li>{% endfor %}
             </ul>
           </div>
           <!--end c-course-square-thumb-->

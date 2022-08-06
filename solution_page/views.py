@@ -1,6 +1,4 @@
 import json
-from msilib.schema import Media
-from telnetlib import AUTHENTICATION
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
@@ -25,15 +23,15 @@ def index(request):
     myLearningPath = LearningPath.objects.latest()
     myTechnology = Technology.objects.all()
     myMethod = Method.objects.all().order_by('order').values()
-    myAdviser = Adviser.objects.all()
-    myAdviserLogo = AdviserLogo.objects.all()
-    myAward = Award.objects.all().values()
-    myCourse = Course.objects.all().values()
-    myProject = Project.objects.all()
-    myParent = Parent.objects.all().values()
-    myMedia = MyMedia.objects.all().values()    
-    myUser = MyUser.objects.all().values()
-    myWhylearn = WhyLearn.objects.all()
+    myAdviser = Adviser.objects.all().order_by('order')
+    myAdviserLogo = AdviserLogo.objects.all().order_by('order')
+    myAward = Award.objects.all().values().order_by('order')
+    myCourse = Course.objects.all().values().order_by('order')
+    myProject = Project.objects.all().order_by('order')
+    myParent = Parent.objects.all().values().order_by('order')
+    myMedia = MyMedia.objects.all().values().order_by('order') 
+    myUser = MyUser.objects.all().values().order_by('order')
+    myWhylearn = WhyLearn.objects.all().order_by('order')
     myCertificate = Certificate.objects.all().values()
     template = loader.get_template('solution_page/index.html')
     context = {
@@ -65,8 +63,7 @@ def modalregister(request):
         member = ModalRegister(student_name=studentname, date_of_birth=dateofbirth, parent_name=parentname, email=email, phone_number=phonenumber)
         member.save()
         messages.success(request, 'Đăng ký thành công')
-        return HttpResponseRedirect('./')
-    return render(request, 'solution_page/modalregister2.html')
+        return HttpResponseRedirect('/solution_page')
 
 def login(request):
     if request.user.is_authenticated:
@@ -77,7 +74,7 @@ def login(request):
         user = authenticate(username=username, password=password)
         if user is not None :
             auth_login(request, user)
-            return HttpResponseRedirect('./')
+            return HttpResponseRedirect('/solution_page')
         else:
             messages.error(request,"Sai tên đăng nhập hoặc mật khẩu")
     return render(request, 'solution_page/login.html',context={'form':loginform()})
@@ -111,8 +108,8 @@ class StudentnameValiadtionView(View):
     def post(self, request):
         data = json.loads(request.body)
         studentname = data['studentname']  
-        if not str(studentname).isalnum():
-            return JsonResponse({'studentname_error': 'Họ và tên không được chứa kí tự đặc biệt'})
+        if not str(studentname).isalpha():
+            return JsonResponse({'studentname_error': 'Họ và tên không được chứa kí tự đặc biệt và chữ số'})
         return JsonResponse({'studentname_valid': True})
 
 def logout(request):
