@@ -1,4 +1,5 @@
 import json
+from turtle import title
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
@@ -78,7 +79,40 @@ def login(request):
         else:
             messages.error(request,"Sai tên đăng nhập hoặc mật khẩu")
     return render(request, 'solution_page/login.html',context={'form':loginform()})
-    
+
+def course(request):
+    myCourse = Course.objects.all().values().order_by('order')
+    template = loader.get_template('solution_page/course.html')
+    context = {
+        'myCourse' : myCourse,
+    }
+    return HttpResponse(template.render(context, request))
+
+def searchcourse(request):
+    template = loader.get_template('solution_page/course.html')
+    key = request.GET.get('keywords')
+    myCourse = Course.objects.all().filter(title__icontains = key )
+    context = {
+        'myCourse' : myCourse,
+    }
+    return HttpResponse(template.render(context, request))
+
+def project(request):
+    myProject = Project.objects.all().order_by('order')
+    template = loader.get_template('solution_page/project.html')
+    context = {
+        'myProject' : myProject,
+    }
+    return HttpResponse(template.render(context, request))
+
+def searchproject(request):
+    template = loader.get_template('solution_page/project.html')
+    key = request.GET.get('keywords')
+    myProject = Project.objects.all().filter(title__icontains = key )
+    context = {
+        'myProject' : myProject,
+    }
+    return HttpResponse(template.render(context, request))
 
 def register(request):
     if request.user.is_authenticated:

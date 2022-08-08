@@ -101,24 +101,26 @@
           <div class="c-search-box">
             <div class="c-search-box__select">
               <div class="dropdown"><a class="btn dropdown-toggle" id="dropdownSelectSearch" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Bài viết</span></a>
-                <div class="dropdown-menu" aria-labelledby="dropdownSelectSearch"><a class="dropdown-item" href="#">Bài viết</a><a class="dropdown-item" href="#">Khoá học</a><a class="dropdown-item" href="#">Dự án</a></div>
+                <div class="dropdown-menu" aria-labelledby="dropdownSelectSearch"><a class="dropdown-item" href="#">Bài viết</a><a class="dropdown-item" href="{% url 'course' %}">Khoá học</a><a class="dropdown-item" href="{% url 'project' %}">Dự án</a></div>
               </div>
             </div>
             <div class="c-search-box__text">
-              <input class="form-control" type="text" placeholder="Bạn muốn tìm gì?">
-              <div class="c-auto-complete">
-                <ul>
-                  <li><a href="#">Trẻ em lập trình cơ bản tập 1</a></li>
-                  <li><a href="#">Cuộc thi TEKY Young Tallent</a></li>
-                  <li><a href="#">Trẻ em lập trình cơ bản tập 3</a></li>
-                  <li><a href="#">Dự án hay nhất</a></li>
-                  <li><a href="#">Trẻ em lập trình cơ bản tập 5</a></li>
-                </ul>
+              <form action='search'>
+                <input class="form-control" type="text" placeholder="Bạn muốn tìm gì?" name="keywords">
+                <div class="c-auto-complete">
+                  <ul>
+                    <li><a href="#">Trẻ em lập trình cơ bản tập 1</a></li>
+                    <li><a href="#">Cuộc thi TEKY Young Tallent</a></li>
+                    <li><a href="#">Trẻ em lập trình cơ bản tập 3</a></li>
+                    <li><a href="#">Dự án hay nhất</a></li>
+                    <li><a href="#">Trẻ em lập trình cơ bản tập 5</a></li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="c-search-box__btn">
-              <button type="submit"><img src="{% static "old_images/images/icons/icon16-search-white.svg"%}"></button>
-            </div>
+              <div class="c-search-box__btn">
+                <button type="submit"><img src="{% static "old_images/images/icons/icon16-search-white.svg"%}"></button>
+              </div>
+            </form>
           </div>
           <div class="c-menu">
             <ul>

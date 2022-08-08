@@ -9,10 +9,11 @@
         </div>
         <div class="c-box__content">
           <div class="c-course-square-thumb is-col-3">
+            {% if myProject %}
             <ul>{% for x in myProject %}
               <li>
                 <div class="b-grid">
-                  <div class="b-grid__img"><a href="#"><img src="../media/{{ x.img }}" alt="image"></a></div>
+                  <div class="b-grid__img"><a href="#"><img src="/media/{{ x.img }}" alt="image"></a></div>
                   <div class="b-grid__content">
                     <div class="b-grid__row">
                       <h3 class="b-grid__title"><a href="#">{{ x.title }}</a></h3>
@@ -25,7 +26,10 @@
                   </div>
                 </div>
               </li>{% endfor %}
+              {% else %}
+              <h2>Không tìm thấy dự án</h2>
             </ul>
+            {%endif%}
           </div>
           <!--end c-course-square-thumb-->
         </div>

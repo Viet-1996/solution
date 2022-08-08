@@ -8,6 +8,8 @@ class NameIcon(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name_plural = 'Icon'
 
 class UploadVid(models.Model):
     title = models.CharField(max_length=200)

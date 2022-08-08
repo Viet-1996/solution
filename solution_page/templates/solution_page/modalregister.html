@@ -1,6 +1,6 @@
 {% load static %}
 <!-- modal Register online-->
-<form action="modalregister/" method="post" id="modalregister">
+<form action="{% url 'modalregister' %}" method="post" id="modalregister">
     {% csrf_token %}
 <div class="modal fade" id="modalRegisterOnline" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog modal-custom">

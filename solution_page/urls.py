@@ -1,7 +1,7 @@
 from django.urls import include, path
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .views import StudentnameValiadtionView, UsernameValidationView
+from .views import StudentnameValiadtionView, UsernameValidationView, course
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
@@ -12,7 +12,11 @@ urlpatterns = [
     path('validate-username', csrf_exempt(UsernameValidationView.as_view()), name='validate-username'),
     path('logout/', views.logout, name='logout'),
     path('tinymce/', include('tinymce.urls')),
-    path('validate-studentname', csrf_exempt(StudentnameValiadtionView.as_view()), name='validate-studentname')
+    path('validate-studentname', csrf_exempt(StudentnameValiadtionView.as_view()), name='validate-studentname'),
+    path('course/', views.course, name='course'),
+    path('course/search', views.searchcourse, name='search_course'),
+    path('project/', views.project, name='project'),
+    path('project/search', views.searchproject, name="search_project"),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
