@@ -14,9 +14,7 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('validate-studentname', csrf_exempt(StudentnameValiadtionView.as_view()), name='validate-studentname'),
     path('course/', views.course, name='course'),
-    path('course/search', views.searchcourse, name='search_course'),
     path('project/', views.project, name='project'),
-    path('project/search', views.searchproject, name="search_project"),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

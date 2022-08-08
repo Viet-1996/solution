@@ -100,12 +100,13 @@
           </div>
           <div class="c-search-box">
             <div class="c-search-box__select">
-              <div class="dropdown"><a class="btn dropdown-toggle" id="dropdownSelectSearch" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Bài viết</span></a>
+              <div class="dropdown"><a class="btn dropdown-toggle" id="dropdownSelectSearch" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>{{searchKey}}</span></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownSelectSearch"><a class="dropdown-item" href="#">Bài viết</a><a class="dropdown-item" href="{% url 'course' %}">Khoá học</a><a class="dropdown-item" href="{% url 'project' %}">Dự án</a></div>
               </div>
             </div>
             <div class="c-search-box__text">
-              <form action='search'>
+              <form method='POST'>
+                {%csrf_token%}
                 <input class="form-control" type="text" placeholder="Bạn muốn tìm gì?" name="keywords">
                 <div class="c-auto-complete">
                   <ul>
