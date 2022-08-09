@@ -107,7 +107,7 @@
             <div class="c-search-box__text">
               <form method='POST'>
                 {%csrf_token%}
-                <input class="form-control" type="text" placeholder="Bạn muốn tìm gì?" name="keywords">
+                <input class="form-control" type="text" placeholder="{{placeholder}}" name="keywords">
                 <div class="c-auto-complete">
                   <ul>
                     <li><a href="#">Trẻ em lập trình cơ bản tập 1</a></li>

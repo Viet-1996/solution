@@ -1,7 +1,7 @@
 from django.urls import include, path
 from . import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .views import StudentnameValiadtionView, UsernameValidationView, course
+from .views import StudentnameValiadtionView, UsernameValidationView
 from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [

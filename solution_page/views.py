@@ -33,7 +33,9 @@ def index(request):
     myUser = MyUser.objects.all().values().order_by('order')
     myWhylearn = WhyLearn.objects.all().order_by('order')
     myCertificate = Certificate.objects.all().values()
+    myCourse2 = None
     searchKey = "Bài viết"
+    placeholder = "Bạn muốn tìm gì?"
     template = loader.get_template('solution_page/index.html')
     context = {
     'myuploadvid': myuploadvid,
@@ -52,6 +54,8 @@ def index(request):
     'myUser' : myUser,
     'myWhylearn' : myWhylearn,
     'searchKey' : searchKey,
+    'placeholder' : placeholder,
+    'myCourse2' : myCourse2,
     }
     return HttpResponse(template.render(context, request))
 
@@ -81,30 +85,39 @@ def login(request):
             messages.error(request,"Sai tên đăng nhập hoặc mật khẩu")
     return render(request, 'solution_page/login.html',context={'form':loginform()})
 
+@login_required(login_url='/solution_page/login', redirect_field_name=None)
 def course(request):
     myCourse = Course.objects.all().values().order_by('order')
     template = loader.get_template('solution_page/course.html')
     searchKey = "Khóa học"
+    placeholder = "Nhập tên hoặc giá khóa học cần tìm"
+    myCourse2 = None
     if request.method=='POST':
         key = request.POST['keywords']
         myCourse = Course.objects.all().filter(title__icontains = key )
+        if not str(key).isalpha():
+            myCourse2 = Course.objects.all().filter(price = key)
     context = {
     'myCourse' : myCourse,
     'searchKey' : searchKey,
+    'placeholder' : placeholder,
+    'myCourse2' : myCourse2,
     }
     return HttpResponse(template.render(context, request))
 
-
+@login_required(login_url='/solution_page/login', redirect_field_name=None)
 def project(request):
     myProject = Project.objects.all().order_by('order')
     template = loader.get_template('solution_page/project.html')
     searchKey = "Dự án"
+    placeholder = "Nhập tên dự án cần tìm"
     if request.method == "POST":
         key = request.POST['keywords']
         myProject = Project.objects.all().filter(title__icontains = key )
     context = {
         'myProject' : myProject,
         'searchKey' : searchKey,
+        'placeholder' : placeholder,
     }
     return HttpResponse(template.render(context, request))
 
