@@ -8,6 +8,7 @@ const phonenumberField = document.querySelector("#phone_number")
 const feedbackArea4 = document.querySelector(".invalid_phonenumber")
 const form = document.querySelector("#modalregister")
 
+
 studentnameField.addEventListener('keyup', (e) =>{
     const studentnameVal = e.target.value;
     studentnameField.classList.remove("is-invalid");

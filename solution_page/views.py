@@ -15,14 +15,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login
 from django.http import JsonResponse
 from django.contrib.auth import logout as auth_logout
+from django.db.models import Q
 
 @login_required(login_url='/solution_page/login', redirect_field_name=None)
 def index(request):
     myuploadvid = UploadVid.objects.latest()
     myWhyChooseUs = WhyChooseUs.objects.all().order_by('order').values()
     myLearningPath = LearningPath.objects.latest()
-    myTechnology = Technology.objects.all()
-    myMethod = Method.objects.all().order_by('order').values()
+    myTechnology = Technology.objects.all().order_by('order')
+    myMethod = Method.objects.all().order_by('order')
     myAdviser = Adviser.objects.all().order_by('order')
     myAdviserLogo = AdviserLogo.objects.all().order_by('order')
     myAward = Award.objects.all().values().order_by('order')
@@ -33,7 +34,6 @@ def index(request):
     myUser = MyUser.objects.all().values().order_by('order')
     myWhylearn = WhyLearn.objects.all().order_by('order')
     myCertificate = Certificate.objects.all().values()
-    myCourse2 = None
     searchKey = "Bài viết"
     placeholder = "Bạn muốn tìm gì?"
     template = loader.get_template('solution_page/index.html')
@@ -55,21 +55,24 @@ def index(request):
     'myWhylearn' : myWhylearn,
     'searchKey' : searchKey,
     'placeholder' : placeholder,
-    'myCourse2' : myCourse2,
     }
     return HttpResponse(template.render(context, request))
 
 def modalregister(request):
     if request.method == "POST":
         studentname = request.POST['student_name']
-        dateofbirth = request.POST['date_of_birth']
-        parentname = request.POST['parent_name']
-        email = request.POST['email']
-        phonenumber = request.POST['phone_number']
-        member = ModalRegister(student_name=studentname, date_of_birth=dateofbirth, parent_name=parentname, email=email, phone_number=phonenumber)
-        member.save()
-        messages.success(request, 'Đăng ký thành công')
-        return HttpResponseRedirect('/solution_page')
+        if str(studentname).isalpha():
+            dateofbirth = request.POST['date_of_birth']
+            parentname = request.POST['parent_name']
+            email = request.POST['email']
+            phonenumber = request.POST['phone_number']
+            member = ModalRegister(student_name=studentname, date_of_birth=dateofbirth, parent_name=parentname, email=email, phone_number=phonenumber)
+            member.save()
+            messages.success(request, 'Đăng ký thành công')
+            return HttpResponseRedirect('/solution_page')
+        else:
+            messages.error(request, 'Đăng ký thất bại, họ và tên chứa kí tự đặc biệt')
+            return HttpResponseRedirect('/solution_page')
 
 def login(request):
     if request.user.is_authenticated:
@@ -85,30 +88,24 @@ def login(request):
             messages.error(request,"Sai tên đăng nhập hoặc mật khẩu")
     return render(request, 'solution_page/login.html',context={'form':loginform()})
 
-@login_required(login_url='/solution_page/login', redirect_field_name=None)
 def course(request):
     myCourse = Course.objects.all().values().order_by('order')
-    template = loader.get_template('solution_page/course.html')
+    template = loader.get_template('solution_page/index.html')
     searchKey = "Khóa học"
     placeholder = "Nhập tên hoặc giá khóa học cần tìm"
-    myCourse2 = None
     if request.method=='POST':
         key = request.POST['keywords']
-        myCourse = Course.objects.all().filter(title__icontains = key )
-        if not str(key).isalpha():
-            myCourse2 = Course.objects.all().filter(price = key)
+        myCourse = Course.objects.all().filter(Q(title__icontains = key) | Q(price = key)).distinct()
     context = {
     'myCourse' : myCourse,
     'searchKey' : searchKey,
     'placeholder' : placeholder,
-    'myCourse2' : myCourse2,
     }
     return HttpResponse(template.render(context, request))
 
-@login_required(login_url='/solution_page/login', redirect_field_name=None)
 def project(request):
     myProject = Project.objects.all().order_by('order')
-    template = loader.get_template('solution_page/project.html')
+    template = loader.get_template('solution_page/index.html')
     searchKey = "Dự án"
     placeholder = "Nhập tên dự án cần tìm"
     if request.method == "POST":
@@ -149,7 +146,7 @@ class UsernameValidationView(View):
 class StudentnameValiadtionView(View):
     def post(self, request):
         data = json.loads(request.body)
-        studentname = data['studentname']  
+        studentname = data['studentname'] 
         if not str(studentname).isalpha():
             return JsonResponse({'studentname_error': 'Họ và tên không được chứa kí tự đặc biệt và chữ số'})
         return JsonResponse({'studentname_valid': True})

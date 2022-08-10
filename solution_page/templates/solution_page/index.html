@@ -31,34 +31,61 @@
     <!--l-nav-->
     {% include 'partials/_nav.html' %}
     <!--Content page part-->
+    {% if myuploadvid%}
     {% include 'partials/_uploadvid.html'%}
+    {% endif %}
     <!--end c-why-head-->
+    {% if myWhyChooseUs %}
     {% include 'partials/_whychooseus.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myLearningPath%}
     {% include 'partials/_learningpath.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myTechnology %}
     {% include 'partials/_technology.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myMethod %}
     {% include 'partials/_method.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myAdviser %}
     {% include 'partials/_adviser.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myCertificate%}
     {% include 'partials/_certificate.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myAward %}
     {% include 'partials/_award.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myCourse %}
     {% include 'partials/_course.html'%}
-    {% include 'partials/_register.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myProject%}
     {% include 'partials/_project.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myParent %}
     {% include 'partials/_parent.html'%}
+    {% endif %}
     <!-- lwt-parent-outer-->
+    {% if myMedia %}
     {% include 'partials/_media.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myUser %}
     {% include 'partials/_user.html'%}
+    {% endif %}
     <!--end c-block-->
+    {% if myWhylearn %}
     {% include 'partials/_whylearn.html'%}
+    {% endif %}
     <!--end c-block-->
     {% include 'partials/_footer.html'%}
     <!--end l-footer-->

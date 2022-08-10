@@ -9,7 +9,7 @@
         </div>
         <div class="c-box__content">
           <div class="c-course-card-grid">
-            {% if myCourse or myCourse2%}
+            {% if myCourse%}
             <ul>{% for x in myCourse %}
                 <li>
                   <div class="c-course-card">
@@ -24,28 +24,13 @@
                     </div>
                   </div>
                 </li>{% endfor %}
-                {% if myCourse2 %}
-                {% for y in myCourse2 %}
-                <li>
-                  <div class="c-course-card">
-                    <div class="c-course-card__thumb"><a href="#"><img src="/media/{{ y.img }}" alt="course"><span class="c-course-card__price">{{ y.price}}<sup>đ</sup></span></a></div>
-                    <div class="c-course-card__content">
-                      <div class="c-course-card__row">
-                        <h3 class="c-course-card__title"><a href="#">{{y.title}}</a></h3>
-                      </div>
-                      <div class="c-course-card__row">
-                        <div class="c-rate is-brown"><span>{{y.rating}}{% include 'partials/_star.html' %}({{ y.vote}})</span></div>
-                      </div>
-                    </div>
-                  </div>
-                </li>{% endfor %}{% endif %}
                 {% else %}
                 <h2>Không tìm thấy khóa học<h2>
             </ul>
             {% endif %}
           </div>
           <!--end c-course-card-grid-->
-          
+          {% include 'partials/_register.html'%}
         </div>
         <!--end c-box-content-->
       </div>
