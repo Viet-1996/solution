@@ -5,7 +5,7 @@
       <div class="c-need-outer">
         <div class="c-need-slider">
           <div class="owl-carousel js-need-slider">{% for x in myWhylearn %}
-            <div class="c-need-item is-{% cycle 'green' 'yellow' 'red-dark' %}">
+            <div class="c-need-item is-{{ x.color }}">
               <div class="c-need-item__thumb"><a href="#"><img src="../media/{{ x.thumb }}" alt="need"><span class="c-need-item__tag">-{{x.discount}}%</span></a></div>
               <div class="c-need-item__content">
                 <div class="c-need-item__row"><a class="c-need-item__title" href="#">{{ x.title }}</a>

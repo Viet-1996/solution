@@ -1,108 +1,149 @@
 from django.contrib import admin
-
-from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Course, Media, Method, ModalRegister, NameIcon, Parent, Project, ProjectIcon, TechnologyList, UploadVid, User, UserIcon, WhyChooseUs, LearningPath, Technology, WhyLearn
+from adminsortable2.admin import SortableAdminMixin
+from adminsortable2.admin import SortableTabularInline
+from .models import Adviser, AdviserLink, AdviserLogo, Award, Certificate, Color, Course, Media, Method, ModalRegister, NameIcon, Parent, Project, ProjectIcon, TechnologyList, UploadVid, User, UserIcon, WhyChooseUs, LearningPath, Technology, WhyLearn
 
 class UploadVidAdmin(admin.ModelAdmin):
-    list_display = ['title', 'url', 'quote', 'name']
-    list_per_page = 10
+    fields = ['title', 'url', 'quote', 'name', 'img', 'admin_photo']
+    list_display = ['title', 'url', 'quote', 'name', 'admin_photo']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
-class WhyChooseUsAdmin(admin.ModelAdmin):
-    list_display = ['title', 'content', 'order']
-    list_per_page = 10
+@admin.register(WhyChooseUs)
+class WhyChooseUsAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['title', 'admin_content', 'my_order']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
 class LearningPathAdmin(admin.ModelAdmin):
-    list_display = ['img']
-    list_per_page = 10
+    fields = ['img', 'admin_photo', 'my_order']
+    list_display = ['admin_photo']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
-class TechnologyInline(admin.TabularInline):
+class TechnologyInline(SortableTabularInline):
     model = TechnologyList
     extra = 10
 
-class TechnologyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'order']
+class TechnologyAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['name', 'admin_photo', 'my_order']
     fieldsets = [
         (None,               {'fields': ['name']}),
         (None,               {'fields': ['img']}),
-        (None,               {'fields': ['order']})
+        (None,               {'fields': ['admin_photo']}),
     ]
+    readonly_fields = ['admin_photo',]
     inlines = [TechnologyInline]
+    list_per_page = 5
 
-class MethodAdmin(admin.ModelAdmin):
-    list_display = ['name', 'order']
+class MethodAdmin(SortableAdminMixin, admin.ModelAdmin):
+    fields = ['name', 'content', 'img', 'admin_photo']
+    list_display = ['name', 'admin_photo', 'my_order']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
-class AdviserLinkInLine(admin.TabularInline):
+class AdviserLinkInLine(SortableTabularInline):
     model = AdviserLink
     extra = 3
 
-class AdviserAdmin(admin.ModelAdmin):
-    list_display = ['title', 'position', 'order']
+class AdviserAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['title', 'position', 'admin_photo', 'my_order']
     fieldsets = [
         (None,      {'fields': ['title']}),
         (None,      {'fields': ['position']}),
         (None,      {'fields': ['img']}),
-        (None,      {'fields': ['order']}),
+        (None,      {'fields': ['admin_photo']}),
     ]
+    readonly_fields = ['admin_photo',]
     inlines = [AdviserLinkInLine]
+    list_per_page = 5
 
-class AdviserLogoAdmin(admin.ModelAdmin):
-    list_display = ['description', 'order']
+class AdviserLogoAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['description', 'admin_photo', 'my_order']
+    fields = ['description', 'logo', 'admin_photo']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
 class CertificateAdmin(admin.ModelAdmin):
-    list_display = ['titlename', 'title', 'img', 'point', 'maincontent', 'logo'] 
+    list_display = ['admin_titlename', 'admin_title',  'admin_img', 'point', 'admin_maincontent', 'admin_logo']
+    fields = ['titlename', 'title', 'img', 'admin_img', 'point', 'maincontent', 'logo', 'admin_logo', 'intro', 'subcontent'] 
+    readonly_fields = ['admin_img','admin_logo']
+    list_per_page = 5
 
-class AwardAdmin(admin.ModelAdmin):
-    list_display = ['img', 'title', 'description', 'Detail']
+class AwardAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['admin_photo', 'title', 'description', 'Detail', 'my_order']
+    fields = ['img','admin_photo', 'title', 'description', 'Detail']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
-class CourseAdmin(admin.ModelAdmin):
-    list_display = ['title', 'img', 'price', 'vote', 'rating']
+class CourseAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['title', 'admin_photo', 'price', 'vote', 'rating', 'my_order']
+    fields = ['title', 'img', 'admin_photo', 'price', 'vote', 'rating']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
 class ModalRegisterAdmin(admin.ModelAdmin):
     list_display = ['student_name', 'date_of_birth', 'parent_name', 'email']
 
-class ProjectIconInLine(admin.TabularInline):
+class ProjectIconInLine(SortableTabularInline):
     model = ProjectIcon
     extra = 3
 
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['title', 'order']
+class ProjectAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['title', 'admin_photo', 'my_order']
     fieldsets = [
         (None,      {'fields': ['title']}),
         (None,      {'fields': ['img']}),
+        (None,      {'fields': ['admin_photo']}),
         (None,      {'fields': ['usercount']}),
-        (None,      {'fields': ['order']}),
     ]
+    readonly_fields = ['admin_photo',]
     inlines = [ProjectIconInLine]
+    list_per_page = 5
 
 class NameIconAdmin(admin.ModelAdmin):
     list_display = ['name']
 
-class ParentAdmin(admin.ModelAdmin):
-    list_display = ['name', 'studentname', 'content', 'order']
+class ParentAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['name', 'studentname', 'content', 'admin_photo', 'my_order']
+    fields = ['name', 'studentname', 'content', 'avatar', 'admin_photo']
+    readonly_fields = ['admin_photo',]
+    list_per_page = 5
 
-class MediaAdmin(admin.ModelAdmin):
-    list_display = ['title']
+class MediaAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['title', 'admin_logo', 'admin_img', 'my_order']
+    fields = ['title' , 'logo','admin_logo', 'img' ,'admin_img']
+    readonly_fields = ['admin_logo','admin_img']
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ['order', 'img']
+class UserAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['admin_photo', 'my_order']
+    fields = ['img', 'admin_photo']
+    readonly_fields = ['admin_photo']
+    list_per_page = 5
 
-class UserCountInline(admin.TabularInline):
+class UserCountInline(SortableTabularInline):
     model = UserIcon
+    readonly_fields = ['admin_photo']
     extra = 5
 
-class WhylearnAdmin(admin.ModelAdmin):
-    list_display = ['title', 'thumb', 'description', 'rating', 'subdes', 'count', 'discount']
+class WhylearnAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['title', 'admin_photo', 'description', 'rating', 'subdes', 'count', 'discount', 'my_order']
     fieldsets = [
         (None,      {'fields': ['title']}),
         (None,      {'fields': ['thumb']}),
+        (None,      {'fields': ['admin_photo']}),
         (None,      {'fields': ['description']}),
         (None,      {'fields': ['subdes']}),
         (None,      {'fields': ['count']}),
         (None,      {'fields': ['discount']}),
         (None,      {'fields': ['rating']}),
-        (None,      {'fields': ['order']}),
         (None,      {'fields': ['vote']}),
+        (None,      {'fields': ['color']}),
     ]
+    readonly_fields = ['admin_photo']
     inlines = [UserCountInline]
+    list_per_page = 5
+
 
 admin.site.register(UploadVid, UploadVidAdmin)
 admin.site.register(Adviser, AdviserAdmin)
@@ -115,9 +156,9 @@ admin.site.register(Method, MethodAdmin)
 admin.site.register(Parent, ParentAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Technology, TechnologyAdmin)
-admin.site.register(WhyChooseUs, WhyChooseUsAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(LearningPath, LearningPathAdmin)
 admin.site.register(ModalRegister, ModalRegisterAdmin)
 admin.site.register(WhyLearn, WhylearnAdmin)
 admin.site.register(NameIcon, NameIconAdmin)
+admin.site.register(Color)

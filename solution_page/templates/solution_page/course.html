@@ -22,41 +22,14 @@
   </head>
   <body>
     {% include 'solution_page/modalregister.html'%}
-    <!--Header part-->
-    <!--l-nav-->
+    {% if messages %}
+    {% for message in messages %}
+      <script>alert('{{ message }}');</script>
+    {% endfor %}
+    {% endif %}
     {% include 'partials/_nav.html' %}
-    <!--Content page part-->
-    {% include 'partials/_uploadvid.html'%}
-    <!--end c-why-head-->
-    {% include 'partials/_whychooseus.html'%}
-    <!--end c-block-->
-    {% include 'partials/_learningpath.html'%}
-    <!--end c-block-->
-    {% include 'partials/_technology.html'%}
-    <!--end c-block-->
-    {% include 'partials/_method.html'%}
-    <!--end c-block-->
-    {% include 'partials/_adviser.html'%}
-    <!--end c-block-->
-    {% include 'partials/_certificate.html'%}
-    <!--end c-block-->
-    {% include 'partials/_award.html'%}
-    <!--end c-block-->
     {% include 'partials/_course.html'%}
-    <!--end c-block-->
-    {% include 'partials/_project.html'%}
-    <!--end c-block-->
-    {% include 'partials/_parent.html'%}
-    <!-- lwt-parent-outer-->
-    {% include 'partials/_media.html'%}
-    <!--end c-block-->
-    {% include 'partials/_user.html'%}
-    <!--end c-block-->
-    {% include 'partials/_whylearn.html'%}
-    <!--end c-block-->
     {% include 'partials/_footer.html'%}
-    <!--end l-footer-->
-    <!--Optional JavaScript part-->
     <script type='text/javascript'>
       $('#modalRegisterOnline').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')

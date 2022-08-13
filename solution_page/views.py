@@ -20,19 +20,19 @@ from django.db.models import Q
 @login_required(login_url='/solution_page/login', redirect_field_name=None)
 def index(request):
     myuploadvid = UploadVid.objects.latest()
-    myWhyChooseUs = WhyChooseUs.objects.all().order_by('order').values()
+    myWhyChooseUs = WhyChooseUs.objects.all().order_by('my_order')
     myLearningPath = LearningPath.objects.latest()
-    myTechnology = Technology.objects.all().order_by('order')
-    myMethod = Method.objects.all().order_by('order')
-    myAdviser = Adviser.objects.all().order_by('order')
-    myAdviserLogo = AdviserLogo.objects.all().order_by('order')
-    myAward = Award.objects.all().values().order_by('order')
-    myCourse = Course.objects.all().values().order_by('order')
-    myProject = Project.objects.all().order_by('order')
-    myParent = Parent.objects.all().values().order_by('order')
-    myMedia = MyMedia.objects.all().values().order_by('order') 
-    myUser = MyUser.objects.all().values().order_by('order')
-    myWhylearn = WhyLearn.objects.all().order_by('order')
+    myTechnology = Technology.objects.all().order_by('my_order')
+    myMethod = Method.objects.all().order_by('my_order')
+    myAdviser = Adviser.objects.all()
+    myAdviserLogo = AdviserLogo.objects.all()
+    myAward = Award.objects.all().values()
+    myCourse = Course.objects.all().values()
+    myProject = Project.objects.all()
+    myParent = Parent.objects.all().values()
+    myMedia = MyMedia.objects.all().values()
+    myUser = MyUser.objects.all().values()
+    myWhylearn = WhyLearn.objects.all()
     myCertificate = Certificate.objects.all().values()
     searchKey = "Bài viết"
     placeholder = "Bạn muốn tìm gì?"
@@ -56,9 +56,6 @@ def index(request):
     'searchKey' : searchKey,
     'placeholder' : placeholder,
     }
-    return HttpResponse(template.render(context, request))
-
-def modalregister(request):
     if request.method == "POST":
         studentname = request.POST['student_name']
         if str(studentname).isalpha():
@@ -69,10 +66,9 @@ def modalregister(request):
             member = ModalRegister(student_name=studentname, date_of_birth=dateofbirth, parent_name=parentname, email=email, phone_number=phonenumber)
             member.save()
             messages.success(request, 'Đăng ký thành công')
-            return HttpResponseRedirect('/solution_page')
         else:
             messages.error(request, 'Đăng ký thất bại, họ và tên chứa kí tự đặc biệt')
-            return HttpResponseRedirect('/solution_page')
+    return HttpResponse(template.render(context, request))
 
 def login(request):
     if request.user.is_authenticated:
@@ -83,19 +79,25 @@ def login(request):
         user = authenticate(username=username, password=password)
         if user is not None :
             auth_login(request, user)
-            return HttpResponseRedirect('/solution_page')
+            if request.POST.get('next') != '':
+                return HttpResponseRedirect(request.POST.get('next'))
+            else:
+                return HttpResponseRedirect('/solution_page')
         else:
             messages.error(request,"Sai tên đăng nhập hoặc mật khẩu")
     return render(request, 'solution_page/login.html',context={'form':loginform()})
 
+@login_required(login_url='/solution_page/login')
 def course(request):
-    myCourse = Course.objects.all().values().order_by('order')
-    template = loader.get_template('solution_page/index.html')
+    myCourse = Course.objects.all().values()
+    template = loader.get_template('solution_page/course.html')
     searchKey = "Khóa học"
     placeholder = "Nhập tên hoặc giá khóa học cần tìm"
     if request.method=='POST':
         key = request.POST['keywords']
-        myCourse = Course.objects.all().filter(Q(title__icontains = key) | Q(price = key)).distinct()
+        myCourse = Course.objects.all().filter(title__icontains = key)
+        if str(key).isnumeric():
+            myCourse = Course.objects.all().filter(Q(title__icontains = key) | Q(price = key)).distinct()
     context = {
     'myCourse' : myCourse,
     'searchKey' : searchKey,
@@ -103,14 +105,15 @@ def course(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/solution_page/login')
 def project(request):
-    myProject = Project.objects.all().order_by('order')
-    template = loader.get_template('solution_page/index.html')
+    myProject = Project.objects.all()
+    template = loader.get_template('solution_page/project.html')
     searchKey = "Dự án"
     placeholder = "Nhập tên dự án cần tìm"
     if request.method == "POST":
         key = request.POST['keywords']
-        myProject = Project.objects.all().filter(title__icontains = key )
+        myProject = Project.objects.all().filter(title__icontains = key)
     context = {
         'myProject' : myProject,
         'searchKey' : searchKey,
@@ -131,7 +134,10 @@ def register(request):
             password = form.cleaned_data['password1']
             user = authenticate(request, username = username, password = password)
             auth_login(request, user)
-            return HttpResponseRedirect('./')
+            if request.POST.get('next') != '':
+                return HttpResponseRedirect(request.POST.get('next'))
+            else:
+                return HttpResponseRedirect('/solution_page')
         messages.error(request, "Tên đăng nhập hoặc mật khẩu không hợp lệ")
     return render(request, 'solution_page/register.html', context={'form':UserCreationForm()})
 

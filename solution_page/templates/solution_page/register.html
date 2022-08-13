@@ -36,6 +36,7 @@
                     {% endif %}
                     <form action="{% url 'register' %}" method="POST" data-validate-username-url="{% url 'validate-username' %}">
                         {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}" />
                         <div class="form-group is-placeholder-login is-valid">
                             {{form.username}}
                             <div class="is-placeholder-login__placeholder"><b>Số điện thoại; Email </b><span>hoặc </span><b>Tên đăng nhập</b></div>

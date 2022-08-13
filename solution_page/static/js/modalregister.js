@@ -7,7 +7,7 @@ const feedBackArea2 = document.querySelector(".invalid_parentname")
 const phonenumberField = document.querySelector("#phone_number")
 const feedbackArea4 = document.querySelector(".invalid_phonenumber")
 const form = document.querySelector("#modalregister")
-
+const feedBackArea5 = document.querySelector(".result")
 
 studentnameField.addEventListener('keyup', (e) =>{
     const studentnameVal = e.target.value;
@@ -76,6 +76,7 @@ phonenumberField.addEventListener('keyup', (h) =>{
 
 form.addEventListener('submit', function(i){
     i.preventDefault();
+    const form = i.target;
     let isStudentnameValid;
     if (!studentnameField.classList.contains("is-invalid") ) {
         isStudentnameValid = true;
@@ -101,8 +102,14 @@ form.addEventListener('submit', function(i){
         isPhonenumberValid = false;
     }
     let isFormValid = isStudentnameValid && isParentnameValid && isEmailValid && isPhonenumberValid;
-    console.log(isFormValid);
-    if (isFormValid){
-        $(this).unbind('submit').submit()
+    if (isFormValid) {
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+        })
+        feedBackArea5.style.display = "block";
+        feedBackArea5.innerHTML = `<h6 style="color:red">${"Đăng ký thành công"}</h6>`
+        $(this).find("input[type='submit']").attr('disabled', 'disabled').val('Đã đăng ký');
+        return true;
     }
 })

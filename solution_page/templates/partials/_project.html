@@ -9,9 +9,7 @@
         </div>
         <div class="c-box__content">
           <div class="c-course-square-thumb is-col-3">
-            {% if myProject %}
-            <ul>
-            {% for x in myProject %}
+            <ul>{% for x in myProject %}
               <li>
                 <div class="b-grid">
                   <div class="b-grid__img"><a href="#"><img src="/media/{{ x.img }}" alt="image"></a></div>
@@ -26,11 +24,11 @@
                     </div>
                   </div>
                 </div>
-              </li>{% endfor %}
-            </ul>
-              {% else %}
+              </li>
+              {% empty %}
               <h2>Không tìm thấy dự án</h2>
-            {%endif%}
+              {% endfor %}
+            </ul>
           </div>
           <!--end c-course-square-thumb-->
         </div>

@@ -9,7 +9,6 @@
         </div>
         <div class="c-box__content">
           <div class="c-course-card-grid">
-            {% if myCourse%}
             <ul>{% for x in myCourse %}
                 <li>
                   <div class="c-course-card">
@@ -23,11 +22,11 @@
                       </div>
                     </div>
                   </div>
-                </li>{% endfor %}
-                {% else %}
-                <h2>Không tìm thấy khóa học<h2>
+                </li>
+                {% empty %}
+                <li><h2>Không tìm thấy khóa học<h2></li>
+                {% endfor %}
             </ul>
-            {% endif %}
           </div>
           <!--end c-course-card-grid-->
           {% include 'partials/_register.html'%}
