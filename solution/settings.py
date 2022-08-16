@@ -29,11 +29,6 @@ SECRET_KEY = 'django-insecure-5c#84@6(#5^nwj86=%#^eq848sw92xqz@)uarsg89^@c6^+w=s
 DEBUG = True
 
 ALLOWED_HOSTS = []
-# smtpserver = smtplib.SMTP("smtp.gmail.com", 587)
-# smtpserver.ehlo()
-# smtpserver.starttls()
-# smtpserver.ehlo()
-# smtpserver.login('viet.nh.945@aptechlearning.edu.vn', 'Viet20051996')
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_POST = 587

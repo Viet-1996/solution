@@ -125,9 +125,14 @@
               </div>
               <form method="POST" action="{% url 'send_email'%}">
                 {% csrf_token %}
+                {% if messages %}
+                        {% for message in messages %}
+                        <p class="{{message.tags}}" style="color:green">{{ message }}<p>
+                        {% endfor %}
+                {% endif %}
                 <div class="c-block-email">
                   <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Email của bạn" name="message">
+                    <input class="form-control" type="text" placeholder="Email của bạn" name="email">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="submit"><img src={% static "old_images/images/icons/icon16-envelope-white.svg" %}></button>
                     </div>

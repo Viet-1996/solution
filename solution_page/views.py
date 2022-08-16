@@ -164,12 +164,14 @@ def logout(request):
 def send_email(request):
     if request.method == 'POST':
         subject = "@@"
-        message = request.POST.get('message', '')
+        message = "bla bla"
+        to_email = request.POST.get('email', '')
         from_email = "viet.nh.945@aptechlearning.edu.vn"
-        if subject and message and from_email:
+        if to_email:
             try:
-                send_mail(subject, message, from_email, ['viet12a6@gmail.com'])
-                return HttpResponse('Send success')
+                send_mail(subject, message, from_email, [to_email])
+                messages.success(request, 'Send success')
+                return HttpResponseRedirect('/solution_page')
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
     return HttpResponse('Fail to send message.')
