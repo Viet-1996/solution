@@ -123,14 +123,17 @@
                 <span class="text-danger">ưu đãi hấp dẫn</span>
                 nhất, các sản phẩm mới thú vị nhất và các sự kiện cuộc thi ...
               </div>
-              <div class="c-block-email">
-                <div class="input-group">
-                  <input class="form-control" type="text" placeholder="Email của bạn">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button"><img src={% static "old_images/images/icons/icon16-envelope-white.svg" %}></button>
+              <form method="POST" action="{% url 'send_email'%}">
+                {% csrf_token %}
+                <div class="c-block-email">
+                  <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Email của bạn" name="message">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit"><img src={% static "old_images/images/icons/icon16-envelope-white.svg" %}></button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
               <div class="c-block-social">
                 <ul>
                   <li><a href="#"><img src={% static "old_images/images/icons/icon16-facebook-black.svg" %}></a></li>

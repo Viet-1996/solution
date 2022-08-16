@@ -16,6 +16,7 @@ from django.contrib.auth import login as auth_login
 from django.http import JsonResponse
 from django.contrib.auth import logout as auth_logout
 from django.db.models import Q
+from django.core.mail import send_mail, BadHeaderError
 
 @login_required(login_url='/solution_page/login', redirect_field_name=None)
 def index(request):
@@ -129,7 +130,6 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            messages.success(request, "Đăng ký thành công")
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(request, username = username, password = password)
@@ -160,3 +160,16 @@ class StudentnameValiadtionView(View):
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect('/solution_page')
+
+def send_email(request):
+    if request.method == 'POST':
+        subject = "@@"
+        message = request.POST.get('message', '')
+        from_email = "viet.nh.945@aptechlearning.edu.vn"
+        if subject and message and from_email:
+            try:
+                send_mail(subject, message, from_email, ['viet12a6@gmail.com'])
+                return HttpResponse('Send success')
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+    return HttpResponse('Fail to send message.')

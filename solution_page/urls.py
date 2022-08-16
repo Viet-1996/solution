@@ -15,6 +15,7 @@ urlpatterns = [
     path('validate-studentname', csrf_exempt(StudentnameValiadtionView.as_view()), name='validate-studentname'),
     path('course/', views.course, name='course'),
     path('project/', views.project, name='project'),
+    path('send_email/', views.send_email, name='send_email')
 ]
 
 # urlpatterns += staticfiles_urlpatterns()

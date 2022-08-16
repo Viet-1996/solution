@@ -31,6 +31,11 @@
                 <div class="c-login__form clearfix">
                     <form action="{% url 'login' %}" method="POST">
                         {% csrf_token %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p class="{{message.tags}}" style="color:red">{{ message }}<p>
+                        {% endfor %}
+                        {% endif %}
                         <input type="hidden" name="next" value="{{ request.GET.next }}" />
                         <div class="form-group is-placeholder-login is-valid">
                             {{form.username}}

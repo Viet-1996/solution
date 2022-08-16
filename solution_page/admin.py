@@ -140,6 +140,7 @@ class WhylearnAdmin(SortableAdminMixin, admin.ModelAdmin):
         (None,      {'fields': ['vote']}),
         (None,      {'fields': ['color']}),
     ]
+    # raw_id_fields = ["color",]
     readonly_fields = ['admin_photo']
     inlines = [UserCountInline]
     list_per_page = 5

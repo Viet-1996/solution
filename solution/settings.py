@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import email
 import os
 from pathlib import Path
+import smtplib
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,8 +29,17 @@ SECRET_KEY = 'django-insecure-5c#84@6(#5^nwj86=%#^eq848sw92xqz@)uarsg89^@c6^+w=s
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# smtpserver = smtplib.SMTP("smtp.gmail.com", 587)
+# smtpserver.ehlo()
+# smtpserver.starttls()
+# smtpserver.ehlo()
+# smtpserver.login('viet.nh.945@aptechlearning.edu.vn', 'Viet20051996')
 
-
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_POST = 587
+EMAIL_HOST_USER = 'viet.nh.945@aptechlearning.edu.vn'
+EMAIL_HOST_PASSWORD = 'Viet20051996'
+EMAIL_USE_TLS = True
 # Application definition
 
 INSTALLED_APPS = [

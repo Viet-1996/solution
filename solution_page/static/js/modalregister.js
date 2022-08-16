@@ -76,6 +76,8 @@ phonenumberField.addEventListener('keyup', (h) =>{
 
 form.addEventListener('submit', function(i){
     i.preventDefault();
+    feedBackArea5.style.display = "block";
+    feedBackArea5.innerHTML = `<h6 style="color:red">${"Vui lòng nhập đúng định dạng trước khi đăng ký"}</h6>`
     const form = i.target;
     let isStudentnameValid;
     if (!studentnameField.classList.contains("is-invalid") ) {

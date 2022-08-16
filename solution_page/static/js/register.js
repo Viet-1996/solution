@@ -20,7 +20,7 @@ usernameField.addEventListener('keyup', (e) =>{
             if(data.username_error){
                 usernameField.classList.add("is-invalid");
                 feedBackArea.style.display = "block";
-                feedBackArea.innerHTML = `<h6>${data.username_error}</h6>`
+                feedBackArea.innerHTML = `<h6 style="color:#dc3545">${data.username_error}</h6>`
             }
         });
     }
